@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">s331153s333975mappe1</string>
+    <string name="app_name">Mattespill</string>
+    <string name="matteSpill">Mattespill</string>
+    <string name="startSpill">Start spill</string>
+    <string name="seStatistikk">Se statistikk</string>
+    <string name="preferanser">Preferanser</string>
 </resources>
