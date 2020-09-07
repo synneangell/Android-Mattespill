@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -18,7 +19,7 @@ public class StartSpill extends AppCompatActivity {
 
     List<String> oppgArray;
     List<String> oppgSvar;
-    List<Integer> indekserBrukt;
+    List<Integer> indekserBrukt = new ArrayList<>(25);
     TextView textBrukerSvar;
     TextView textRegnestykket;
     TextView textAntallRiktig;
@@ -26,7 +27,7 @@ public class StartSpill extends AppCompatActivity {
     TextView oppgaverIgjen;
     Random index;
     String brukerSvar;
-    Integer n;
+    Integer n = -1;
     String textSvar;
     Integer antallStykker;
 
@@ -65,7 +66,7 @@ public class StartSpill extends AppCompatActivity {
         final Button btnC = (Button)findViewById(R.id.btnC);
 
 
-        btnC.setOnClickListener(new View.OnClickListener(){
+        btnOk.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 ok();
             }
@@ -136,19 +137,17 @@ public class StartSpill extends AppCompatActivity {
 
     public void randomGenerator(){
         int øvreGrense = 25;
+        int forrigeIndeks = n;
         n  = index.nextInt(øvreGrense); //får ut random tall fra 0 til 24 (index størrelsen)
 
-        int i =0;
-        while(i < indekserBrukt.size()){
-            if(n==indekserBrukt.get(i)){
-                n  = index.nextInt(øvreGrense); //får ut random tall fra 0 til 24 (index størrelsen)
-
-            }
+        while(n == forrigeIndeks){
+            n = index.nextInt(øvreGrense);
         }
-        indekserBrukt.add(n);
+
         Log.d("Verdien til n i random", String.valueOf(n));
 
         textRegnestykket.setText(oppgArray.get(n));
+        Log.d("Stykke", oppgArray.get(n));
     }
 
     public void resetSvar(View v){
@@ -169,7 +168,7 @@ public class StartSpill extends AppCompatActivity {
     public void ok(){
         String svar = textBrukerSvar.getText().toString();
         String riktigSvar = oppgSvar.get(n);
-        Log.d("Verdien til n i ok-metoden", String.valueOf(n));
+        Log.d("n i ok-metoden", String.valueOf(n));
         if(svar.equals(riktigSvar)){
             Toast.makeText(StartSpill.this, "Riktig!", Toast.LENGTH_SHORT).show();
             antallRiktig = antallRiktig +  1;
