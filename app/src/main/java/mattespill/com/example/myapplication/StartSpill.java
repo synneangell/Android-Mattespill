@@ -19,7 +19,7 @@ public class StartSpill extends AppCompatActivity {
 
     List<String> oppgArray;
     List<String> oppgSvar;
-    List<Integer> indekserBrukt = new ArrayList<>(25);
+    List<Integer> indekserBrukt = new ArrayList<>(24);
     TextView textBrukerSvar;
     TextView textRegnestykket;
     TextView textAntallRiktig;
@@ -27,7 +27,7 @@ public class StartSpill extends AppCompatActivity {
     TextView oppgaverIgjen;
     Random index;
     String brukerSvar;
-    Integer n = -1;
+    Integer n;
     String textSvar;
     Integer antallStykker;
 
@@ -137,17 +137,19 @@ public class StartSpill extends AppCompatActivity {
 
     public void randomGenerator(){
         int øvreGrense = 25;
-        int forrigeIndeks = n;
         n  = index.nextInt(øvreGrense); //får ut random tall fra 0 til 24 (index størrelsen)
 
-        while(n == forrigeIndeks){
-            n = index.nextInt(øvreGrense);
-        }
+        int i =0;
+        while(i < indekserBrukt.size()){
+            if(n==indekserBrukt.get(i)){
+                n  = index.nextInt(øvreGrense); //får ut random tall fra 0 til 24 (index størrelsen)
 
+            }
+        }
+        indekserBrukt.add(n);
         Log.d("Verdien til n i random", String.valueOf(n));
 
         textRegnestykket.setText(oppgArray.get(n));
-        Log.d("Stykke", oppgArray.get(n));
     }
 
     public void resetSvar(View v){
@@ -162,13 +164,13 @@ public class StartSpill extends AppCompatActivity {
         String input = String.valueOf(nummer);
         brukerSvar = brukerSvar + input;
         textBrukerSvar.setText(brukerSvar);
-        Log.d("Test", brukerSvar);
+        Log.d("BrukerInput", brukerSvar);
     }
 
     public void ok(){
         String svar = textBrukerSvar.getText().toString();
         String riktigSvar = oppgSvar.get(n);
-        Log.d("n i ok-metoden", String.valueOf(n));
+        Log.d("Verdien til n i ok-metoden", String.valueOf(n));
         if(svar.equals(riktigSvar)){
             Toast.makeText(StartSpill.this, "Riktig!", Toast.LENGTH_SHORT).show();
             antallRiktig = antallRiktig +  1;
