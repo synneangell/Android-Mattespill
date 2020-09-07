@@ -11,4 +11,11 @@ public class Statistikk extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistikk);
     }
+
+    //INNHOLD I STATISTIKK
+
+    /**
+     * Metode som reagerer hver gang et spill avsluttes og tar med seg resultatet fra
+     * spillet og registrerer det i statistikken i en TestField. F.eks.
+     */
 }

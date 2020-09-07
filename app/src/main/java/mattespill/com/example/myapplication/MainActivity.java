@@ -1,7 +1,6 @@
 package mattespill.com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,75 +10,43 @@ import android.widget.ViewAnimator;
 public class MainActivity extends AppCompatActivity {
 
     private Button startSpill;
-    private Button seStatistikk;
+    private Button statistikk;
     private Button preferanser;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startSpill = (Button)findViewById(R.id.startSpill);
+        /*********************************************
+         * Dette er metoder som åpner de forskjellige aktivitetene
+         *********************************************/
+
+        startSpill = findViewById(R.id.startSpill);
         startSpill.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                åpneStartSpill();
+                Intent intent = new Intent(MainActivity.this, StartSpill.class);
+                startActivity(intent);
             }
         });
 
-        seStatistikk = (Button)findViewById(R.id.seStatistikk);
-        seStatistikk.setOnClickListener(new View.OnClickListener(){
+        statistikk = findViewById(R.id.seStatistikk);
+        statistikk.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                åpneSeStatistikk();
+                Intent intent = new Intent(MainActivity.this, Statistikk.class);
+                    startActivity(intent);
             }
         });
 
-        seStatistikk = (Button)findViewById(R.id.preferanser);
-        seStatistikk.setOnClickListener(new View.OnClickListener(){
+        preferanser = findViewById(R.id.preferanser);
+        preferanser.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                åpnePreferanser();
+                Intent intent = new Intent(MainActivity.this, Preferanser.class);
+                startActivity(intent);
             }
         });
-
-
     }
-
-        public void åpneStartSpill(){
-        Intent intent = new Intent(MainActivity.this, StartSpill.class);
-        startActivity(intent);
-    }
-
-        public void åpneSeStatistikk(){
-        Intent intent = new Intent(MainActivity.this, Statistikk.class);
-        startActivity(intent);
-    }
-
-    public void åpnePreferanser(){
-        Intent intent = new Intent(MainActivity.this, Preferanser.class);
-        startActivity(intent);
-    }
-
-
 }
-
-/**
- *
- button = (Button) findViewById(R.id.button);
-
- button.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View v) {
-åpnePreferanser();
-}
-});
- }
-
- public void åpnePreferanser(){
- Intent intent = new Intent(this, Preferanser.class);
- startActivity(intent);
- }
- }
- **/

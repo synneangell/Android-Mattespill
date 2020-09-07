@@ -2,6 +2,17 @@
     <string name="app_name">Mattespill</string>
     <string name="matteSpill">Mattespill</string>
     <string name="startSpill">Start spill</string>
-    <string name="seStatistikk">Se statistikk</string>
+    <string name="statistikk">Statistikk</string>
     <string name="preferanser">Preferanser</string>
+    <string name="brukerSvar"></string>
+    <string name="byttSpråk">Bytt språk</string>
+    <string name="antallOppgaver">Antall oppgaver</string>
+    <string name="oppgaverIgjen">Oppgaver igjen</string>
+    <string name="antallRiktigeOppgaver">Antall riktige oppgaver</string>
+    <string name="radio_5oppg">5 oppgaver</string>
+    <string name="radio_10oppg">10 oppgaver</string>
+    <string name="radio_25oppg">25 oppgaver</string>
+    <string name="radioOppgaver">radioOppgaver</string>
+    <string name="regnestykket"></string>
+
 </resources>

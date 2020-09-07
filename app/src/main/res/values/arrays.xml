@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer-array name="regnestykker1">
-        <item>54</item>
-        <item>23</item>
-        <item>93</item>
-        <item>39</item>
-        <item>39</item>
-        <item>84</item>
+    <string-array name="regnestykker">
+        <item>5 + 2 =</item>
+        <item>19 + 3 =</item>
+        <item>12 + 5 =</item>
+        <item>15 + 3 =</item>
+        <item>16 + 2 =</item>
+        <item>2 + 5 =</item>
+        <item>5 + 9 =</item>
+        <item>7 + 8 =</item>
+        <item>6 + 6 =</item>
+        <item>8 + 16 =</item>
+        <item>2 + 5 =</item>
+        <item>19 + 4 =</item>
+        <item>9 + 9 =</item>
+        <item>2 + 16 =</item>
+        <item>20 + 6 =</item>
+        <item>3 + 5 =</item>
+        <item>5 + 1 =</item>
+        <item>10 + 9 =</item>
+        <item>11 + 15 =</item>
+        <item>20 + 10 =</item>
+        <item>14 + 2 =</item>
+        <item>5 + 7 =</item>
+        <item>1 + 11 =</item>
+        <item>4 + 16 =</item>
+        <item>5 + 5 =</item>
+    </string-array>
+
+    <string-array name="regnestykkerSvar">
+        <item>7</item>
+        <item>22</item>
+        <item>17</item>
+        <item>18</item>
+        <item>18</item>
+        <item>7</item>
+        <item>14</item>
+        <item>15</item>
         <item>12</item>
-        <item>49</item>
-        <item>94</item>
-        <item>38</item>
-        <item>74</item>
-        <item>10</item>
-        <item>39</item>
-        <item>73</item>
-        <item>38</item>
-        <item>38</item>
-        <item>28</item>
-        <item>84</item>
-        <item>28</item>
-        <item>38</item>
-        <item>53</item>
-        <item>73</item>
-        <item>2</item>
+        <item>24</item>
+        <item>7</item>
+        <item>23</item>
+        <item>18</item>
+        <item>26</item>
         <item>8</item>
         <item>6</item>
-    </integer-array>
-
-    <integer-array name="regnestykker2">
-        <item>8</item>
-        <item>9</item>
-        <item>2</item>
-        <item>39</item>
-        <item>8</item>
+        <item>19</item>
+        <item>26</item>
+        <item>30</item>
+        <item>16</item>
+        <item>12</item>
+        <item>12</item>
         <item>20</item>
-        <item>9</item>
-        <item>49</item>
-        <item>0</item>
-        <item>38</item>
-        <item>2</item>
-        <item>29</item>
-        <item>49</item>
-        <item>59</item>
-        <item>38</item>
-        <item>60</item>
         <item>10</item>
-        <item>48</item>
-        <item>58</item>
-        <item>48</item>
-        <item>8</item>
-        <item>3</item>
-        <item>2</item>
-        <item>5</item>
-    </integer-array>
+    </string-array>
 </resources>
