@@ -18,10 +18,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*********************************************
-         * Dette er metoder som åpner de forskjellige aktivitetene
-         *********************************************/
-
         startSpill = findViewById(R.id.startSpill);
         startSpill.setOnClickListener(new View.OnClickListener(){
             @Override

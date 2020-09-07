@@ -2,7 +2,10 @@ package mattespill.com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -12,9 +15,9 @@ import java.util.Locale;
 public class Preferanser extends AppCompatActivity {
 
     RadioGroup radioGroup;
-    RadioButton oppg5;
-    RadioButton oppg10;
-    RadioButton oppg25;
+    RadioButton radio5Oppg;
+    RadioButton radio10Oppg;
+    RadioButton radio25Oppg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,28 +25,23 @@ public class Preferanser extends AppCompatActivity {
         setContentView(R.layout.activity_preferanser);
     }
 
-    //INNHOLD I PREFERANSER
+    /*
 
-    /**
-     * Metode som gjør at brukeren kan velge mellom 5, 10 eller 25 oppgaver.
-     */
+    public void settLand(String landskode){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration cf = res.getConfiguration();
+        cf.setLocale(new Locale(landskode));
+        res.updateConfiguration(cf, dm);
+    }
 
-    /**
-     * Metode som gjør at brukeren kan velge mellom norsk og tysk språk
-     */
+    public void tysk(View v){
+        settLand("de");
+        recreate();
+    }
 
-    //Velger språk fra biltet og bytter på språket i hele appen med setLocale
-/*    public void valgtSpråk(View v){
-        if (v == findViewById(R.id.tyskFlagg)){
-            setLocale(LocaleManager.TYSK);
-        } else if(v == findViewById(R.id.norskFlagg)){
-            setLocale(LocaleManager.NORSK);
-        }
-    }*/
-
-    //Setter språket og restarter aktiviteten
-    /*private void settSpråk(@LocaleManager.LocaleDef String språk){
-        LocaleManager.setNewLocale(this, language);
+    public void norsk(View v){
+        settLand("no");
         recreate();
     }*/
 }

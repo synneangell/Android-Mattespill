@@ -6,7 +6,9 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,111 +18,186 @@ public class StartSpill extends AppCompatActivity {
 
     List<String> oppgArray;
     List<String> oppgSvar;
-    TextView brukerSvar;
+    List<Integer> indekserBrukt;
+    TextView textBrukerSvar;
     TextView textRegnestykket;
     TextView textAntallRiktig;
+    Integer antallRiktig;
     TextView oppgaverIgjen;
     Random index;
+    String brukerSvar;
+    Integer n;
+    String textSvar;
+    Integer antallStykker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_spill);
 
-        oppgArray = Arrays.asList(getResources().getString(R.array.regnestykker));
-        oppgSvar = Arrays.asList(getResources().getString(R.array.regnestykkerSvar));
-        int antallRiktige = 0;
-        textAntallRiktig.setText(String.valueOf(antallRiktige));
+        oppgArray = Arrays.asList(getResources().getStringArray(R.array.regnestykker));
+        oppgSvar = Arrays.asList(getResources().getStringArray(R.array.regnestykkerSvar));
 
+        textRegnestykket = (TextView)findViewById(R.id.textRegnestykket);
+        textBrukerSvar = (TextView)findViewById(R.id.textBrukerSvar);
+        textAntallRiktig = (TextView)findViewById(R.id.textAntallRiktig);
+        brukerSvar = "";
         index = new Random();
+        antallRiktig = 0;
 
         randomGenerator();
 
 
-/*        int i = 0;
-        for(int i = 0; i<oppgSvar.size(); i++){
-            Log.d(" "+oppgSvar[i]);
-        }*/
 
-        //INNHOLD I SPILLET
+        //Lytter på knappene
+        final Button btn1 = (Button)findViewById(R.id.btn1);
+        final Button btn2 = (Button)findViewById(R.id.btn2);
+        final Button btn3 = (Button)findViewById(R.id.btn3);
+        final Button btn4 = (Button)findViewById(R.id.btn4);
+        final Button btn5 = (Button)findViewById(R.id.btn5);
+        final Button btn6 = (Button)findViewById(R.id.btn6);
+        final Button btn7 = (Button)findViewById(R.id.btn7);
+        final Button btn8 = (Button)findViewById(R.id.btn8);
+        final Button btn9 = (Button)findViewById(R.id.btn9);
+        final Button btn0 = (Button)findViewById(R.id.btn0);
+        final Button btnOk = (Button)findViewById(R.id.btnOk);
+        final Button btnC = (Button)findViewById(R.id.btnC);
 
-        /**
-         * Må hente arrayet med regnestykkene og arrayet med svarene.
-         * Må hente input fra brukeren som inneholder svaret på regnestykkene
-         * Må sette antall poeng brukren har, starter på null når spiller starter
-         * Må hente vindu hvor brukeren får tilbakemelding om svaret var riktig eller galt.
-         * Må sette de forskjellige knappene til å inneholde faktiske tallverdier
-         **/
+
+        btnC.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                ok();
+            }
+        });
 
 
-        /*public void numbersOnClick(View v){
+        btn1.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                settNummer(1);
+            }
+        });
 
-        }*/
+        btn2.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                settNummer(2);
+            }
+        });
 
-        /**
-         * Metode som går tilbake til forside og spør om man er sikker på om man vil
-         * avslutte spillet og resultatet blir da ikke lagret i statistikken.
-         */
+        btn3.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                settNummer(3);
+            }
+        });
 
-        /**
-         * Meode som randomiserer regnestykkene slik at de kommer i forskjellig
-         * rekkefølge hver gang et nytt spill starter
-         */
+        btn4.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                settNummer(4);
+            }
+        });
 
-        /**
-         * Metode som beregner hvilken oppgave man er på og hvor mange det er igjen og
-         * viser det i en textView
-         */
+        btn5.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                settNummer(5);
+            }
+        });
 
-        /**
-         * Metode som viser hvor mange riktive svar det er enn så lenge ift. hvor mange
-         * spørsmål/regnestykker det er igjen. F.eks. 5 av 10 riktige. Så kun de riktige
-         * svarene blir registrert i det textView-et
-         */
+        btn6.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                settNummer(6);
+            }
+        });
 
-        /**
-         * Metode hvor feil input fra bruker kan bli fjernet og skrevet inn
-         * på nytt. En clear-metode som sletter det som står i EditText (C)
-         */
+        btn7.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                settNummer(7);
+            }
+        });
 
-        /**
-         * Må ha en metode som sjekker input fra bruker mot det faktiske svaret på
-         * regnestykket i arrayet med korrekte svar og gi tilbakemelding på om svaret
-         * var riktig eller ikke + ta brukeren til neste regnestykket. Svaret skal
-         * sjekkes i det brukeren trykker på "Svar" knappen?
-         */
+        btn8.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                settNummer(8);
+            }
+        });
 
-        /**
-         * Metode som sier at max tallet man kan skrive inn i EditText er 2 tall, ellers
-         * får brukeren en alert
-         */
+        btn9.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                settNummer(9);
+            }
+        });
+
+        btn0.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                settNummer(0);
+            }
+        });
+
     }
 
     public void randomGenerator(){
-        int n  = (int)(Math.random() * (24 - 0) + 24); //får ut random tall fra 0 til 24 (index størrelsen)
-        textRegnestykket.setText(oppgArray.get(n));
+        int øvreGrense = 25;
+        n  = index.nextInt(øvreGrense); //får ut random tall fra 0 til 24 (index størrelsen)
 
+        int i =0;
+        while(i < indekserBrukt.size()){
+            if(n==indekserBrukt.get(i)){
+                n  = index.nextInt(øvreGrense); //får ut random tall fra 0 til 24 (index størrelsen)
+
+            }
+        }
+        indekserBrukt.add(n);
+        Log.d("Verdien til n i random", String.valueOf(n));
+
+        textRegnestykket.setText(oppgArray.get(n));
+    }
+
+    public void resetSvar(View v){
+        textBrukerSvar.setText("");
     }
 
     public void ikkeGjentagende(){
 
     }
 
+    public void settNummer(int nummer){
+        String input = String.valueOf(nummer);
+        brukerSvar = brukerSvar + input;
+        textBrukerSvar.setText(brukerSvar);
+        Log.d("Test", brukerSvar);
+    }
 
-    public void maxNummer(){
-        int sjekkNr = brukerSvar.length();
-        if(sjekkNr > 2){
-            Log.d("ALERT", "Maks 2 tall");
+    public void ok(){
+        String svar = textBrukerSvar.getText().toString();
+        String riktigSvar = oppgSvar.get(n);
+        Log.d("Verdien til n i ok-metoden", String.valueOf(n));
+        if(svar.equals(riktigSvar)){
+            Toast.makeText(StartSpill.this, "Riktig!", Toast.LENGTH_SHORT).show();
+            antallRiktig = antallRiktig +  1;
+            textAntallRiktig.setText(antallRiktig.toString());
+            brukerSvar = "";
+            textBrukerSvar.setText("");
+            randomGenerator();
+        }
+        else{
+            Toast.makeText(StartSpill.this, "Feil!", Toast.LENGTH_SHORT).show();
+            brukerSvar = "";
+            textBrukerSvar.setText("");
+            textAntallRiktig.setText(antallRiktig.toString());
+            randomGenerator();
         }
     }
 
-/*    public void knappNummer(View v){
-        switch (v.getId()){
-            case R.id.btn1 :
-                setNumber(1);
-                maxNummer();
-        }
-    }*/
+    /*
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
 
 
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+*/
 }
