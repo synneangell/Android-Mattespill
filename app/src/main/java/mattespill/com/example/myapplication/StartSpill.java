@@ -1,8 +1,10 @@
 package mattespill.com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.res.Resources;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,18 +20,19 @@ import java.util.Random;
 public class StartSpill extends AppCompatActivity {
 
     List<String> oppgArray;
-    List<String> oppgSvar;
+    List<String> svarArray;
     List<Integer> indekserBrukt = new ArrayList<>(25);
-    TextView textBrukerSvar;
+    TextView textBrukersvar;
     TextView textRegnestykket;
     TextView textAntallRiktig;
-    Integer antallRiktig;
     TextView oppgaverIgjen;
-    Random index;
-    String brukerSvar;
-    Integer n = -1;
+    Integer antallRiktig;
+    Integer antallStykker = 0;
+    Integer teller = 3;
+    Integer indeks = -1;
+    Random random;
+    String brukersvar;
     String textSvar;
-    Integer antallStykker;
 
 
     @Override
@@ -38,17 +41,16 @@ public class StartSpill extends AppCompatActivity {
         setContentView(R.layout.activity_start_spill);
 
         oppgArray = Arrays.asList(getResources().getStringArray(R.array.regnestykker));
-        oppgSvar = Arrays.asList(getResources().getStringArray(R.array.regnestykkerSvar));
+        svarArray = Arrays.asList(getResources().getStringArray(R.array.regnestykkerSvar));
 
         textRegnestykket = (TextView)findViewById(R.id.textRegnestykket);
-        textBrukerSvar = (TextView)findViewById(R.id.textBrukerSvar);
+        textBrukersvar = (TextView)findViewById(R.id.textBrukerSvar);
         textAntallRiktig = (TextView)findViewById(R.id.textAntallRiktig);
-        brukerSvar = "";
-        index = new Random();
+        brukersvar = "";
+        random = new Random();
         antallRiktig = 0;
 
         randomGenerator();
-
 
 
         //Lytter på knappene
@@ -136,51 +138,72 @@ public class StartSpill extends AppCompatActivity {
     }
 
     public void randomGenerator(){
-        int øvreGrense = 25;
-        int forrigeIndeks = n;
-        n  = index.nextInt(øvreGrense); //får ut random tall fra 0 til 24 (index størrelsen)
+        if(teller == antallStykker){ //Avslutter spillet dersom antall stykker er nådd
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(getResources().getString(R.string.nyttSpill))
+                        .setCancelable(false)
+                        .setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                StartSpill.this.finish();
+                                Intent intent = new Intent(StartSpill.this, StartSpill.this.getClass());
+                                StartSpill.this.startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(getResources().getString(R.string.nei), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                StartSpill.this.finish();
+                            }
+                        })
+                        .show();
+            }
+        else { //Spillet fortsetter, nytt regnestykke gis ut
+            antallStykker += 1;
+            int øvreGrense = 25;
+            int forrigeIndeks = indeks;
+            indeks = random.nextInt(øvreGrense); //får ut random tall fra 0 til 24 som er indeks i arrayet med regnestykker
 
-        while(n == forrigeIndeks){
-            n = index.nextInt(øvreGrense);
+            while (indeks == forrigeIndeks) {
+                indeks = random.nextInt(øvreGrense);
+            }
+
+            Log.d("Verdien til n i random", String.valueOf(indeks));
+
+            textRegnestykket.setText(oppgArray.get(indeks));
+            Log.d("Stykke", oppgArray.get(indeks));
         }
-
-        Log.d("Verdien til n i random", String.valueOf(n));
-
-        textRegnestykket.setText(oppgArray.get(n));
-        Log.d("Stykke", oppgArray.get(n));
     }
 
     public void resetSvar(View v){
-        textBrukerSvar.setText("");
+        textBrukersvar.setText("");
     }
 
-    public void ikkeGjentagende(){
-
-    }
-
+    //Metode som setter brukerens svar i applikasjonen
     public void settNummer(int nummer){
         String input = String.valueOf(nummer);
-        brukerSvar = brukerSvar + input;
-        textBrukerSvar.setText(brukerSvar);
-        Log.d("Test", brukerSvar);
+        brukersvar = brukersvar + input;
+        textBrukersvar.setText(brukersvar);
+        Log.d("Test", brukersvar);
     }
 
+    //Metode som sjekker om svar er riktig/feil
     public void ok(){
-        String svar = textBrukerSvar.getText().toString();
-        String riktigSvar = oppgSvar.get(n);
-        Log.d("n i ok-metoden", String.valueOf(n));
+        String svar = textBrukersvar.getText().toString();
+        String riktigSvar = svarArray.get(indeks);
+        Log.d("n i ok-metoden", String.valueOf(indeks));
         if(svar.equals(riktigSvar)){
             Toast.makeText(StartSpill.this, "Riktig!", Toast.LENGTH_SHORT).show();
             antallRiktig = antallRiktig +  1;
             textAntallRiktig.setText(antallRiktig.toString());
-            brukerSvar = "";
-            textBrukerSvar.setText("");
+            brukersvar = "";
+            textBrukersvar.setText(brukersvar);
             randomGenerator();
         }
         else{
             Toast.makeText(StartSpill.this, "Feil!", Toast.LENGTH_SHORT).show();
-            brukerSvar = "";
-            textBrukerSvar.setText("");
+            brukersvar = "";
+            textBrukersvar.setText(brukersvar);
             textAntallRiktig.setText(antallRiktig.toString());
             randomGenerator();
         }

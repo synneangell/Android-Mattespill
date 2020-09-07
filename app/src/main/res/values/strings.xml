@@ -25,7 +25,13 @@
     <string name="btn9">9</string>
     <string name="btn0">0</string>
     <string name="ok">Ok</string>
-    <string name="textAntallRiktig">Antall riktige svar</string>
+    <string name="textAntallRiktig">Antall riktig:</string>
+
+    <string name="ja">Ja</string>
+    <string name="nei">Nei</string>
+    <string name="spillFerdig">Spillet er ferdig!</string>
+    <string name="nyttSpill">Spillet er ferdig. Ønsker du et nytt spill?</string>
+
 
 
 
