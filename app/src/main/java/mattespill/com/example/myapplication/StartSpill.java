@@ -25,7 +25,7 @@ public class StartSpill extends AppCompatActivity {
     TextView textBrukersvar;
     TextView textRegnestykket;
     TextView textAntallRiktig;
-    TextView oppgaverIgjen;
+    TextView textOppgaverIgjen;
     Integer oppgaverUtført = 0;
     Integer antallRiktig = 0;
     Integer antallStykker = 5;
@@ -50,7 +50,7 @@ public class StartSpill extends AppCompatActivity {
 
         textRegnestykket = (TextView)findViewById(R.id.textRegnestykket);
         textBrukersvar = (TextView)findViewById(R.id.textBrukerSvar);
-        textAntallRiktig = (TextView)findViewById(R.id.textAntallRiktig);
+        textOppgaverIgjen = (TextView)findViewById(R.id.textOppgaverIgjen);
         random = new Random();
 
         //valgtRadiobutton();
@@ -145,6 +145,7 @@ public class StartSpill extends AppCompatActivity {
         }
     } */
 
+
     public void randomGenerator(){
         if(teller == antallStykker){ //Avslutter spillet dersom antall stykker er nådd
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -205,7 +206,6 @@ public class StartSpill extends AppCompatActivity {
             Toast.makeText(StartSpill.this, "Riktig!", Toast.LENGTH_SHORT).show();
             antallRiktig = antallRiktig +  1;
             oppgaverUtført = oppgaverUtført + 1;
-            textAntallRiktig.setText(antallRiktig.toString());
             brukersvar = "";
             textBrukersvar.setText(brukersvar);
             randomGenerator();
@@ -215,9 +215,9 @@ public class StartSpill extends AppCompatActivity {
             brukersvar = "";
             oppgaverUtført = oppgaverUtført + 1;
             textBrukersvar.setText(brukersvar);
-            textAntallRiktig.setText(antallRiktig.toString());
             randomGenerator();
         }
+        textOppgaverIgjen.setText(antallRiktig.toString() + "/" + antallStykker);
     }
 
     /*
