@@ -1,9 +1,11 @@
 package mattespill.com.example.myapplication;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
@@ -39,6 +41,7 @@ public class Preferanser extends AppCompatActivity {
         //startActivity(intent);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void settLand(String landskode){
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
@@ -46,10 +49,14 @@ public class Preferanser extends AppCompatActivity {
         cf.setLocale(new Locale(landskode));
         res.updateConfiguration(cf, dm);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void tysk(View v){
         settLand("de");
         recreate();
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void norsk(View v){
         settLand("no");
         recreate();

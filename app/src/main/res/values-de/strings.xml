@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Mattespill</string>
+    <string name="matteSpill">Mattespill tysk</string>
+    <string name="startSpill">Start spill</string>
+    <string name="statistikk">Statistikk</string>
+    <string name="preferanser">Preferanser</string>
+    <string name="brukerSvar"></string>
+    <string name="byttSpråk">Velg språk nå tysk</string>
+    <string name="antallOppgaver">Antall oppgaver</string>
+    <string name="oppgaverIgjen">Oppgaver igjen</string>
+    <string name="antallRiktigeOppgaver">Antall riktige oppgaver</string>
+    <string name="radio_5oppg">5 oppgaver</string>
+    <string name="radio_10oppg">10 oppgaver</string>
+    <string name="radio_25oppg">25 oppgaver</string>
+    <string name="radioOppgaver">radioOppgaver</string>
+    <string name="regnestykket"></string>
+    <string name="btn1">1</string>
+    <string name="btn2">2</string>
+    <string name="btn3">3</string>
+    <string name="btn4">4</string>
+    <string name="btn5">5</string>
+    <string name="btn6">6</string>
+    <string name="btn7">7</string>
+    <string name="btn8">8</string>
+    <string name="btn9">9</string>
+    <string name="btn0">0</string>
+    <string name="ok">Ok</string>
+    <string name="textAntallRiktig">Antall riktig:</string>
+
+    <string name="ja">Ja</string>
+    <string name="nei">Nei</string>
+    <string name="spillFerdig">Spillet er ferdig!</string>
+    <string name="nyttSpill">Spillet er ferdig. Ønsker du et nytt spill?</string>
+
+
+
+
+
+</resources>
