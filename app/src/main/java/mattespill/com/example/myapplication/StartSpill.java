@@ -28,11 +28,15 @@ public class StartSpill extends AppCompatActivity {
     TextView oppgaverIgjen;
     Integer antallRiktig;
     Integer antallStykker = 0;
-    Integer teller = 3;
+    Integer teller = 5;
     Integer indeks = -1;
     Random random;
     String brukersvar;
     String textSvar;
+    Integer feilSvar;
+    Integer radio5;
+    Integer radio10;
+    Integer radio25;
 
 
     @Override
@@ -50,6 +54,7 @@ public class StartSpill extends AppCompatActivity {
         random = new Random();
         antallRiktig = 0;
 
+        valgtRadiobutton();
         randomGenerator();
 
 
@@ -134,7 +139,19 @@ public class StartSpill extends AppCompatActivity {
                 settNummer(0);
             }
         });
+    }
 
+    public void valgtRadiobutton(){
+        Intent intent = getIntent();
+        String valgt = intent.getStringExtra("valgtRadio");
+
+        if(valgt.equals("5")){
+            teller = 5;
+        } else if(valgt.equals("10")){
+            teller = 10;
+        } else if(valgt.equals("25")){
+            teller = 25;
+        }
     }
 
     public void randomGenerator(){
@@ -204,6 +221,7 @@ public class StartSpill extends AppCompatActivity {
         else{
             Toast.makeText(StartSpill.this, "Feil!", Toast.LENGTH_SHORT).show();
             brukersvar = "";
+            //feilSvar++;
             textBrukersvar.setText(brukersvar);
             textAntallRiktig.setText(antallRiktig.toString());
             randomGenerator();
