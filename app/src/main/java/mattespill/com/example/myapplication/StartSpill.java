@@ -55,7 +55,6 @@ public class StartSpill extends AppCompatActivity {
         textOppgaverIgjen = (TextView)findViewById(R.id.textOppgaverIgjen);
         random = new Random();
 
-
         //valgtRadiobutton();
         randomGenerator();
 
