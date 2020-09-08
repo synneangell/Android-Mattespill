@@ -26,12 +26,13 @@ public class StartSpill extends AppCompatActivity {
     TextView textRegnestykket;
     TextView textAntallRiktig;
     TextView oppgaverIgjen;
-    Integer antallRiktig;
-    Integer antallStykker = 0;
-    Integer teller = 5;
+    Integer oppgaverUtført = 0;
+    Integer antallRiktig = 0;
+    Integer antallStykker = 5;
+    Integer teller = 0;
     Integer indeks = -1;
     Random random;
-    String brukersvar;
+    String brukersvar = "";
     String textSvar;
     Integer feilSvar;
     Integer radio5;
@@ -50,13 +51,10 @@ public class StartSpill extends AppCompatActivity {
         textRegnestykket = (TextView)findViewById(R.id.textRegnestykket);
         textBrukersvar = (TextView)findViewById(R.id.textBrukerSvar);
         textAntallRiktig = (TextView)findViewById(R.id.textAntallRiktig);
-        brukersvar = "";
         random = new Random();
-        antallRiktig = 0;
 
-        valgtRadiobutton();
+        //valgtRadiobutton();
         randomGenerator();
-
 
         //Lytter på knappene
         final Button btn1 = (Button)findViewById(R.id.btn1);
@@ -69,15 +67,6 @@ public class StartSpill extends AppCompatActivity {
         final Button btn8 = (Button)findViewById(R.id.btn8);
         final Button btn9 = (Button)findViewById(R.id.btn9);
         final Button btn0 = (Button)findViewById(R.id.btn0);
-        final Button btnOk = (Button)findViewById(R.id.btnOk);
-        final Button btnC = (Button)findViewById(R.id.btnC);
-
-
-        btnOk.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                ok();
-            }
-        });
 
 
         btn1.setOnClickListener(new View.OnClickListener(){
@@ -141,6 +130,8 @@ public class StartSpill extends AppCompatActivity {
         });
     }
 
+    /*
+
     public void valgtRadiobutton(){
         Intent intent = getIntent();
         String valgt = intent.getStringExtra("valgtRadio");
@@ -152,7 +143,7 @@ public class StartSpill extends AppCompatActivity {
         } else if(valgt.equals("25")){
             teller = 25;
         }
-    }
+    } */
 
     public void randomGenerator(){
         if(teller == antallStykker){ //Avslutter spillet dersom antall stykker er nådd
@@ -176,7 +167,7 @@ public class StartSpill extends AppCompatActivity {
                         .show();
             }
         else { //Spillet fortsetter, nytt regnestykke gis ut
-            antallStykker += 1;
+            teller += 1;
             int øvreGrense = 25;
             int forrigeIndeks = indeks;
             indeks = random.nextInt(øvreGrense); //får ut random tall fra 0 til 24 som er indeks i arrayet med regnestykker
@@ -206,13 +197,14 @@ public class StartSpill extends AppCompatActivity {
     }
 
     //Metode som sjekker om svar er riktig/feil
-    public void ok(){
+    public void ok(View v){
         String svar = textBrukersvar.getText().toString();
         String riktigSvar = svarArray.get(indeks);
         Log.d("n i ok-metoden", String.valueOf(indeks));
         if(svar.equals(riktigSvar)){
             Toast.makeText(StartSpill.this, "Riktig!", Toast.LENGTH_SHORT).show();
             antallRiktig = antallRiktig +  1;
+            oppgaverUtført = oppgaverUtført + 1;
             textAntallRiktig.setText(antallRiktig.toString());
             brukersvar = "";
             textBrukersvar.setText(brukersvar);
@@ -221,7 +213,7 @@ public class StartSpill extends AppCompatActivity {
         else{
             Toast.makeText(StartSpill.this, "Feil!", Toast.LENGTH_SHORT).show();
             brukersvar = "";
-            //feilSvar++;
+            oppgaverUtført = oppgaverUtført + 1;
             textBrukersvar.setText(brukersvar);
             textAntallRiktig.setText(antallRiktig.toString());
             randomGenerator();

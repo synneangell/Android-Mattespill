@@ -15,7 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import java.util.Locale;
 
-public class Preferanser extends PreferenceActivity {
+public class Preferanser extends AppCompatActivity {
     RadioGroup radioGroup;
     RadioButton valgtRadio;
     Integer valgt;
@@ -23,21 +23,14 @@ public class Preferanser extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
+       // getFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
         setContentView(R.layout.activity_preferanser);
 
         //RadioGroup radioGroup = (RadioGroup)findViewById(R.id.radioOppgaver);
         //valgt = radioGroup.getCheckedRadioButtonId();
     }
 
-    public static class PrefsFragment extends PreferenceFragment {
-        @Override
-        public void onCreate(Bundle savedInstanceState){
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.layout.activity_preferanser);
-        }
-    }
-    
+
 
     public void radioValgt(View v){
         Intent intent = new Intent (this, MainActivity.class);
