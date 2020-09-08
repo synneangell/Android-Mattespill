@@ -176,7 +176,8 @@ public class StartSpill extends AppCompatActivity {
     }
 
     public void resetSvar(View v){
-        textBrukersvar.setText("");
+        brukersvar = "";
+        textBrukersvar.setText(brukersvar);
     }
 
     //Metode som setter brukerens svar i applikasjonen
