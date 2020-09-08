@@ -38,7 +38,7 @@ public class Preferanser extends AppCompatActivity {
         Toast.makeText(Preferanser.this, "Radioknapp er valgt", Toast.LENGTH_SHORT).show();
         //startActivity(intent);
     }
-    /*
+
     public void settLand(String landskode){
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
@@ -53,5 +53,5 @@ public class Preferanser extends AppCompatActivity {
     public void norsk(View v){
         settLand("no");
         recreate();
-    }*/
+    }
 }

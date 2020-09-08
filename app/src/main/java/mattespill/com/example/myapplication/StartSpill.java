@@ -225,7 +225,6 @@ public class StartSpill extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
 
-
     }
 
     @Override
