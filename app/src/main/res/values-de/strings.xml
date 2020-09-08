@@ -1,18 +1,18 @@
 <resources>
-    <string name="app_name">Mattespill</string>
-    <string name="matteSpill">Mattespill tysk</string>
-    <string name="startSpill">Start spill</string>
-    <string name="statistikk">Statistikk</string>
-    <string name="preferanser">Preferanser</string>
+    <string name="app_name">Math-Spiele</string>
+    <string name="matteSpill">Math-Spiele</string>
+    <string name="startSpill">Spiele starten</string>
+    <string name="statistikk">Statistiken</string>
+    <string name="preferanser">Vorlieben</string>
     <string name="brukerSvar"></string>
-    <string name="byttSpråk">Velg språk nå tysk</string>
-    <string name="antallOppgaver">Antall oppgaver</string>
-    <string name="oppgaverIgjen">Oppgaver igjen</string>
-    <string name="antallRiktigeOppgaver">Antall riktige oppgaver</string>
-    <string name="radio_5oppg">5 oppgaver</string>
-    <string name="radio_10oppg">10 oppgaver</string>
-    <string name="radio_25oppg">25 oppgaver</string>
-    <string name="radioOppgaver">radioOppgaver</string>
+    <string name="byttSpråk">Wähle deine Sprache</string>
+    <string name="antallOppgaver">Anzahl der Aufgaben</string>
+    <string name="oppgaverIgjen">wieder Aufgaben</string>
+    <string name="antallRiktigeOppgaver">Anzahl der richtigen Aufgaben</string>
+    <string name="radio_5oppg">5 aufgaben</string>
+    <string name="radio_10oppg">10 aufgaben</string>
+    <string name="radio_25oppg">25 aufgaben</string>
+    <string name="radioOppgaver">funkaugfaben</string>
     <string name="regnestykket"></string>
     <string name="btn1">1</string>
     <string name="btn2">2</string>
@@ -25,15 +25,14 @@
     <string name="btn9">9</string>
     <string name="btn0">0</string>
     <string name="ok">Ok</string>
-    <string name="textAntallRiktig">Antall riktig:</string>
+    <string name="textAntallRiktig">Nummer richtig:</string>
 
     <string name="ja">Ja</string>
-    <string name="nei">Nei</string>
-    <string name="spillFerdig">Spillet er ferdig!</string>
-    <string name="nyttSpill">Spillet er ferdig. Ønsker du et nytt spill?</string>
-
-
-
-
+    <string name="nei">Nein</string>
+    <string name="spillFerdig">Das Spiel ist vorbei!</string>
+    <string name="nyttSpill">Das Spiel ist vorbei. Willst du ein neues Spiel?</string>
+    <string name="slettFremgang">Der Fortschritt des Spiels wird weg sein. Sind Sie sicher, dass Sie aufhören wollen?</string>
+    <string name="riktig">Richtig!</string>
+    <string name="feil">Error!</string>
 
 </resources>

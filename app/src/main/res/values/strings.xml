@@ -31,6 +31,10 @@
     <string name="nei">Nei</string>
     <string name="spillFerdig">Spillet er ferdig!</string>
     <string name="nyttSpill">Spillet er ferdig. Ønsker du et nytt spill?</string>
+    <string name="slettFremgang">"Fremgangen i spillet vil bli borte. Er du sikker på at du vil avslutte?</string>
+    <string name="riktig">Riktig!</string>
+    <string name="feil">Feil!</string>
+
 
 
 

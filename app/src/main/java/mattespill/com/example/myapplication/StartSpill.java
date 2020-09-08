@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class StartSpill extends AppCompatActivity {
@@ -52,6 +54,7 @@ public class StartSpill extends AppCompatActivity {
         textBrukersvar = (TextView)findViewById(R.id.textBrukerSvar);
         textOppgaverIgjen = (TextView)findViewById(R.id.textOppgaverIgjen);
         random = new Random();
+
 
         //valgtRadiobutton();
         randomGenerator();
@@ -145,6 +148,27 @@ public class StartSpill extends AppCompatActivity {
         }
     } */
 
+    @Override
+    public void onBackPressed(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(StartSpill.this);
+        builder.setMessage(getResources().getString(R.string.slettFremgang));
+        builder.setCancelable(true);
+        builder.setNegativeButton(getResources().getString(R.string.nei), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 
     public void randomGenerator(){
         if(teller == antallStykker){ //Avslutter spillet dersom antall stykker er nådd
@@ -203,7 +227,7 @@ public class StartSpill extends AppCompatActivity {
         String riktigSvar = svarArray.get(indeks);
         Log.d("n i ok-metoden", String.valueOf(indeks));
         if(svar.equals(riktigSvar)){
-            Toast.makeText(StartSpill.this, "Riktig!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(StartSpill.this, getResources().getString(R.string.riktig), Toast.LENGTH_SHORT).show();
             antallRiktig = antallRiktig +  1;
             oppgaverUtført = oppgaverUtført + 1;
             brukersvar = "";
@@ -211,7 +235,7 @@ public class StartSpill extends AppCompatActivity {
             randomGenerator();
         }
         else{
-            Toast.makeText(StartSpill.this, "Feil!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(StartSpill.this, getResources().getString(R.string.feil), Toast.LENGTH_SHORT).show();
             brukersvar = "";
             oppgaverUtført = oppgaverUtført + 1;
             textBrukersvar.setText(brukersvar);

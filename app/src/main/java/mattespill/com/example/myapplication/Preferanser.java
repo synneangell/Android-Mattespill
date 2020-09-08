@@ -32,8 +32,6 @@ public class Preferanser extends AppCompatActivity {
         //valgt = radioGroup.getCheckedRadioButtonId();
     }
 
-
-
     public void radioValgt(View v){
         Intent intent = new Intent (this, MainActivity.class);
         intent.putExtra("valgtRadio", valgt);
@@ -41,7 +39,6 @@ public class Preferanser extends AppCompatActivity {
         //startActivity(intent);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void settLand(String landskode){
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
@@ -50,13 +47,11 @@ public class Preferanser extends AppCompatActivity {
         res.updateConfiguration(cf, dm);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void tysk(View v){
         settLand("de");
         recreate();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void norsk(View v){
         settLand("no");
         recreate();
