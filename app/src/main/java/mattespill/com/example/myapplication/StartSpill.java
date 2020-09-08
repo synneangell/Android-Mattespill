@@ -217,7 +217,7 @@ public class StartSpill extends AppCompatActivity {
             textBrukersvar.setText(brukersvar);
             randomGenerator();
         }
-        textOppgaverIgjen.setText(antallRiktig.toString() + "/" + antallStykker);
+        textOppgaverIgjen.setText(antallRiktig.toString() + "/" + oppgaverUtført.toString());
     }
 
     /*
