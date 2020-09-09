@@ -78,10 +78,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:id="@+id/radioOppgaver"
+        android:id="@+id/radiogroup"
         android:layout_width="186dp"
         android:layout_height="103dp"
-        android:key="radioOppgaver"
+        android:key="radiogroup"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="155dp"
         android:layout_marginLeft="155dp"
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
-            android:id="@+id/radio5Oppg"
+            android:id="@+id/radio5Opg"
             android:onClick="radioValgt"
             android:layout_width="match_parent"
             android:layout_height="32dp"
@@ -106,7 +106,7 @@
             tools:layout_editor_absoluteY="221dp" />
 
         <RadioButton
-            android:id="@+id/radio10Oppg"
+            android:id="@+id/radio10Opg"
             android:onClick="radioValgt"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
@@ -117,7 +117,7 @@
             tools:layout_editor_absoluteY="221dp" />
 
         <RadioButton
-            android:id="@+id/radio25Oppg"
+            android:id="@+id/radio25Opg"
             android:layout_width="144dp"
             android:onClick="radioValgt"
             android:layout_height="31dp"

@@ -3,6 +3,7 @@ package mattespill.com.example.myapplication;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
@@ -18,18 +19,25 @@ import android.widget.Toast;
 import java.util.Locale;
 
 public class Preferanser extends AppCompatActivity {
-    RadioGroup radioGroup;
-    RadioButton valgtRadio;
+    RadioGroup radiogroup;
+    RadioButton radio5Opg;
+    RadioButton radio10Opg;
+    RadioButton radio25Opg;
     Integer valgt;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // getFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
         setContentView(R.layout.activity_preferanser);
 
-        //RadioGroup radioGroup = (RadioGroup)findViewById(R.id.radioOppgaver);
-        //valgt = radioGroup.getCheckedRadioButtonId();
+        radiogroup = findViewById(R.id.radiogroup);
+        radio5Opg = findViewById(R.id.radio5Opg);
+        radio10Opg = findViewById(R.id.radio10Opg);
+        radio25Opg = findViewById(R.id.radio25Opg);
+
+        
+
     }
 
     public void radioValgt(View v){
