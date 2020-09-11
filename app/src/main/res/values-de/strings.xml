@@ -35,4 +35,8 @@
     <string name="riktig">Richtig!</string>
     <string name="feil">Error!</string>
 
+    <string name="fem">5</string>
+    <string name="ti">10</string>
+    <string name="tjuefem">25</string>
+
 </resources>

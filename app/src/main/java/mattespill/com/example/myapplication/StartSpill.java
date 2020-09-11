@@ -3,8 +3,10 @@ package mattespill.com.example.myapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +33,7 @@ public class StartSpill extends AppCompatActivity {
     TextView textOppgaverIgjen;
     Integer oppgaverUtført = 0;
     Integer antallRiktig = 0;
-    Integer antallStykker = 5;
+    Integer antallStykker;
     Integer teller = 0;
     Integer indeks = -1;
     Random random;
@@ -42,11 +44,17 @@ public class StartSpill extends AppCompatActivity {
     Integer radio10;
     Integer radio25;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_spill);
+
+        SharedPreferences sPreferences = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
+
+        antallStykker = sPreferences.getInt("radioValgt", 5);
+
+
+        Log.d("Antall stykker: ", antallStykker.toString());
 
         oppgArray = Arrays.asList(getResources().getStringArray(R.array.regnestykker));
         svarArray = Arrays.asList(getResources().getStringArray(R.array.regnestykkerSvar));
@@ -254,16 +262,24 @@ public class StartSpill extends AppCompatActivity {
         textOppgaverIgjen.setText(antallRiktig.toString() + "/" + oppgaverUtført.toString());
     }
 
-    /*
+
     @Override
-    protected void onSaveInstanceState(Bundle outState){
+    protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
+        /*outState.putString("playerAnswer", textAnswer);
+        outState.putString("currentAnswer", setAnswer.getText().toString());
+        outState.putString("currentCalc", calcQuestion.getText().toString());
+        */
     }
 
     @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState){
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        /*
+        textAnswer = savedInstanceState.getString("currentAnswer");
+        setAnswer.setText(savedInstanceState.getString("playerAnswer"));
+        calcQuestion.setText(savedInstanceState.getString("currentCalc"));
+        */
     }
-*/
 }
+

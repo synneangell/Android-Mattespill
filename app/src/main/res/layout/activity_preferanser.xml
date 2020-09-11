@@ -96,7 +96,7 @@
 
         <RadioButton
             android:id="@+id/radio5Opg"
-            android:onClick="radioValgt"
+
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:layout_marginRight="20dp"
@@ -107,7 +107,6 @@
 
         <RadioButton
             android:id="@+id/radio10Opg"
-            android:onClick="radioValgt"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginRight="20dp"
@@ -119,7 +118,6 @@
         <RadioButton
             android:id="@+id/radio25Opg"
             android:layout_width="144dp"
-            android:onClick="radioValgt"
             android:layout_height="31dp"
             android:layout_marginRight="20dp"
             android:text="@string/radio_25oppg"
