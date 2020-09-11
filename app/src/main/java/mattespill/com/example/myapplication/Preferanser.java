@@ -32,6 +32,11 @@ public class Preferanser extends AppCompatActivity {
         //valgt = radioGroup.getCheckedRadioButtonId();
     }
 
+    /**
+     * Må late en metode sharedPreferences her som skal sende språkvalget videre til andre aktiviteter
+     * som vi må oppdatere i onCreate i MainActivity, StartSpill og Statistikk.
+     */
+
     public void radioValgt(View v){
         Intent intent = new Intent (this, MainActivity.class);
         intent.putExtra("valgtRadio", valgt);
