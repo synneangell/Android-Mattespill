@@ -27,6 +27,14 @@
     <string name="ok">Ok</string>
     <string name="textAntallRiktig">Nummer richtig:</string>
 
+    <!-- STRINGS FOR STATISTIKK -->
+    <string name="stat_vunnet">Spiel gewonnen : </string>
+    <string name="stat_tapt">Spiele verloren : </string>
+    <string name="stat_vunnet_svar"></string>
+    <string name="stat_tapt_svar"></string>
+    <string name="stat_slettBtn">Statistiken löschen</string>
+    <string name="slettStat">Möchten Sie die Statistiken wirklich löschen?</string>
+
     <string name="ja">Ja</string>
     <string name="nei">Nein</string>
     <string name="spillFerdig">Das Spiel ist vorbei!</string>

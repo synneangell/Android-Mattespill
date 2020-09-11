@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Locale;
 
@@ -27,11 +28,11 @@ public class Preferanser extends AppCompatActivity {
     RadioButton radio5Opg;
     RadioButton radio10Opg;
     RadioButton radio25Opg;
-
     RadioButton valgt;
-
     Integer antallStykker;
-    SharedPreferences sharedPreferences;
+    SharedPreferences sp;
+    SharedPreferences sp2;
+    TextView antallVunnet, antallTapt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +46,15 @@ public class Preferanser extends AppCompatActivity {
 
         antallStykker = radioValgt();
 
-        sharedPreferences = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        sp = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
         editor.putInt("radioValgt", antallStykker);
         editor.apply();
 
+/*        sp2 = getSharedPreferences("PreferanserSpråk", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor2 = sp.edit();
+        editor2.putInt("sprakValgt", );
+        editor2.commit();*/
     }
 
     public int radioValgt(){

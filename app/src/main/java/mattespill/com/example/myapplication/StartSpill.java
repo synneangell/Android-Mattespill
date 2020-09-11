@@ -1,8 +1,6 @@
 package mattespill.com.example.myapplication;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +30,7 @@ public class StartSpill extends AppCompatActivity {
     TextView textOppgaverIgjen;
     Integer oppgaverUtført = 0;
     Integer antallRiktig = 0;
+    Integer antallTapt = 0;
     Integer antallStykker;
     Integer teller = 0;
     Integer indeks = -1;
@@ -43,18 +41,23 @@ public class StartSpill extends AppCompatActivity {
     Integer radio5;
     Integer radio10;
     Integer radio25;
+    Integer spillVunnet = 0;
+    Integer spillTapt = 0;
+    SharedPreferences sp;
+    SharedPreferences sp2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_spill);
 
-        SharedPreferences sPreferences = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
-
-        antallStykker = sPreferences.getInt("radioValgt", 5);
-
-
+        sp = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
+        antallStykker = sp.getInt("radioValgt", 5);
         Log.d("Antall stykker: ", antallStykker.toString());
+
+
+        //Log.d("Antall riktig i startSpill", String.valueOf(antallRiktig));
+        //Log.d("Antall feil i startSpill", String.valueOf(antallTapt));
 
         oppgArray = Arrays.asList(getResources().getStringArray(R.array.regnestykker));
         svarArray = Arrays.asList(getResources().getStringArray(R.array.regnestykkerSvar));
@@ -177,13 +180,13 @@ public class StartSpill extends AppCompatActivity {
         alertDialog.show();
     }
 
-
     public void randomGenerator(){
         if(teller == antallStykker){ //Avslutter spillet dersom antall stykker er nådd
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(getResources().getString(R.string.nyttSpill))
                         .setCancelable(false)
                         .setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
+
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 StartSpill.this.finish();
@@ -245,6 +248,7 @@ public class StartSpill extends AppCompatActivity {
             oppgaverUtført = oppgaverUtført + 1;
             brukersvar = "";
             textBrukersvar.setText(brukersvar);
+            Log.d("Antall riktig i startSpill", String.valueOf(antallRiktig));
             randomGenerator();
         }
         else{
@@ -252,14 +256,25 @@ public class StartSpill extends AppCompatActivity {
             ImageView view = new ImageView(this);
             view.setImageResource(R.drawable.image_icon2);
             toast.setView(view);
+            //View toastView = toast.getView();
+            //toastView.setBackgroundResource(R.drawable.toast);
             toast.show();
             Toast.makeText(StartSpill.this, getResources().getString(R.string.feil), Toast.LENGTH_SHORT).show();
             brukersvar = "";
+            //La til denne for å registrere hvor mange feil, slik at jeg kan putte det i statistikken
+            antallTapt = antallTapt + 1;
+            Log.d("Antall feil ", String.valueOf(antallTapt));
             oppgaverUtført = oppgaverUtført + 1;
             textBrukersvar.setText(brukersvar);
             randomGenerator();
         }
         textOppgaverIgjen.setText(antallRiktig.toString() + "/" + oppgaverUtført.toString());
+
+        sp2 = getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp2.edit();
+        editor.putInt("antallVunnet", antallRiktig);
+        editor.putInt("antallTapt", antallTapt);
+        editor.commit();
     }
 
 
