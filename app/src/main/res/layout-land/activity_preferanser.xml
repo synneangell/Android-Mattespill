@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/preferanser_horizontalt"
+    tools:context=".Preferanser">
+
+    <TextView
+        android:id="@+id/byttSpråk"
+        android:layout_width="152dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="129dp"
+        android:layout_marginLeft="129dp"
+        android:layout_marginTop="375dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginRight="130dp"
+        android:layout_marginBottom="310dp"
+        android:text="Velg språk"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnNorsk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="243dp"
+        android:layout_marginLeft="243dp"
+        android:layout_marginTop="268dp"
+        android:layout_marginEnd="388dp"
+        android:layout_marginRight="388dp"
+        android:layout_marginBottom="68dp"
+        android:background="@drawable/norskflagg"
+        android:onClick="norsk"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnTysk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="398dp"
+        android:layout_marginLeft="398dp"
+        android:layout_marginTop="268dp"
+        android:layout_marginEnd="233dp"
+        android:layout_marginRight="233dp"
+        android:layout_marginBottom="68dp"
+        android:background="@drawable/tyskflagg"
+        android:onClick="tysk"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/antallOppgaver"
+        android:layout_width="218dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="256dp"
+        android:layout_marginLeft="256dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="257dp"
+        android:layout_marginRight="257dp"
+        android:layout_marginBottom="322dp"
+        android:text="Antall oppgaver"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioOppgaver"
+        android:layout_width="186dp"
+        android:layout_height="103dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="290dp"
+        android:layout_marginLeft="290dp"
+        android:layout_marginTop="98dp"
+        android:layout_marginEnd="255dp"
+        android:layout_marginRight="255dp"
+        android:layout_marginBottom="210dp"
+        android:key="radioOppgaver"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/radio5Oppg"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginRight="20dp"
+            android:onClick="radioValgt"
+            android:text="@string/radio_5oppg"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="76dp"
+            tools:layout_editor_absoluteY="221dp" />
+
+        <RadioButton
+            android:id="@+id/radio10Oppg"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginRight="20dp"
+            android:onClick="radioValgt"
+            android:text="@string/radio_10oppg"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="221dp" />
+
+        <RadioButton
+            android:id="@+id/radio25Oppg"
+            android:layout_width="144dp"
+            android:layout_height="31dp"
+            android:layout_marginRight="20dp"
+            android:onClick="radioValgt"
+            android:text="@string/radio_25oppg"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="282dp"
+            tools:layout_editor_absoluteY="221dp" />
+    </RadioGroup>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
