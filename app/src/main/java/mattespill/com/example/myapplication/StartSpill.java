@@ -3,13 +3,16 @@ package mattespill.com.example.myapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +33,7 @@ public class StartSpill extends AppCompatActivity {
     TextView textOppgaverIgjen;
     Integer oppgaverUtført = 0;
     Integer antallRiktig = 0;
-    Integer antallStykker = 5;
+    Integer antallStykker;
     Integer teller = 0;
     Integer indeks = -1;
     Random random;
@@ -41,11 +44,17 @@ public class StartSpill extends AppCompatActivity {
     Integer radio10;
     Integer radio25;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_spill);
+
+        SharedPreferences sPreferences = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
+
+        antallStykker = sPreferences.getInt("radioValgt", 5);
+
+
+        Log.d("Antall stykker: ", antallStykker.toString());
 
         oppgArray = Arrays.asList(getResources().getStringArray(R.array.regnestykker));
         svarArray = Arrays.asList(getResources().getStringArray(R.array.regnestykkerSvar));
@@ -226,6 +235,11 @@ public class StartSpill extends AppCompatActivity {
         String riktigSvar = svarArray.get(indeks);
         Log.d("n i ok-metoden", String.valueOf(indeks));
         if(svar.equals(riktigSvar)){
+            Toast toast = new Toast(this);
+            ImageView view = new ImageView(this);
+            view.setImageResource(R.drawable.image_icon);
+            toast.setView(view);
+            toast.show();
             Toast.makeText(StartSpill.this, getResources().getString(R.string.riktig), Toast.LENGTH_SHORT).show();
             antallRiktig = antallRiktig +  1;
             oppgaverUtført = oppgaverUtført + 1;
@@ -234,6 +248,11 @@ public class StartSpill extends AppCompatActivity {
             randomGenerator();
         }
         else{
+            Toast toast = new Toast(this);
+            ImageView view = new ImageView(this);
+            view.setImageResource(R.drawable.image_icon2);
+            toast.setView(view);
+            toast.show();
             Toast.makeText(StartSpill.this, getResources().getString(R.string.feil), Toast.LENGTH_SHORT).show();
             brukersvar = "";
             oppgaverUtført = oppgaverUtført + 1;
@@ -243,16 +262,24 @@ public class StartSpill extends AppCompatActivity {
         textOppgaverIgjen.setText(antallRiktig.toString() + "/" + oppgaverUtført.toString());
     }
 
-    /*
+
     @Override
-    protected void onSaveInstanceState(Bundle outState){
+    protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
+        /*outState.putString("playerAnswer", textAnswer);
+        outState.putString("currentAnswer", setAnswer.getText().toString());
+        outState.putString("currentCalc", calcQuestion.getText().toString());
+        */
     }
 
     @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState){
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        /*
+        textAnswer = savedInstanceState.getString("currentAnswer");
+        setAnswer.setText(savedInstanceState.getString("playerAnswer"));
+        calcQuestion.setText(savedInstanceState.getString("currentCalc"));
+        */
     }
-*/
 }
+
