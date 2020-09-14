@@ -23,7 +23,6 @@ public class StartSpill extends AppCompatActivity {
 
     List<String> oppgArray;
     List<String> svarArray;
-    List<Integer> indekserBrukt = new ArrayList<>(25);
     TextView textBrukersvar;
     TextView textRegnestykket;
     TextView textAntallRiktig;
@@ -36,13 +35,6 @@ public class StartSpill extends AppCompatActivity {
     Integer indeks = -1;
     Random random;
     String brukersvar = "";
-    String textSvar;
-    Integer feilSvar;
-    Integer radio5;
-    Integer radio10;
-    Integer radio25;
-    Integer spillVunnet = 0;
-    Integer spillTapt = 0;
     SharedPreferences sp;
 
     @Override
@@ -161,29 +153,20 @@ public class StartSpill extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(StartSpill.this);
-        builder.setMessage(getResources().getString(R.string.slettFremgang));
-        builder.setCancelable(true);
-        builder.setNegativeButton(getResources().getString(R.string.nei), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
-                antallRiktig = 0;
-                antallTapt = 0;
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        builder.setMessage(getResources().getString(R.string.slettFremgang))
+                .setPositiveButton(getResources().getString(R.string.ja), (DialogInterface, f)  -> {
+                    finish();
+                    antallRiktig = 0;
+                    antallTapt = 0;
+        })
+                .setNegativeButton(getResources().getString(R.string.nei), null).show();
     }
 
     public void randomGenerator(){
         if(teller == antallStykker){ //Avslutter spillet dersom antall stykker er nådd
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            Toast toast = new Toast(this);
+            Toast.makeText(StartSpill.this, getResources().getString(R.string.ingenFlereOppgaver), Toast.LENGTH_SHORT).show();
                 builder.setMessage(getResources().getString(R.string.nyttSpill))
                         .setCancelable(false)
                         .setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
@@ -249,10 +232,9 @@ public class StartSpill extends AppCompatActivity {
             oppgaverUtført = oppgaverUtført + 1;
             brukersvar = "";
             textBrukersvar.setText(brukersvar);
-            Log.d("Antall riktig i startSpill", String.valueOf(antallRiktig));
             randomGenerator();
         }
-        else{
+        else {
             Toast toast = new Toast(this);
             ImageView view = new ImageView(this);
             view.setImageResource(R.drawable.image_icon2);
@@ -262,7 +244,6 @@ public class StartSpill extends AppCompatActivity {
             toast.show();
             Toast.makeText(StartSpill.this, getResources().getString(R.string.feil), Toast.LENGTH_SHORT).show();
             brukersvar = "";
-            //La til denne for å registrere hvor mange feil, slik at jeg kan putte det i statistikken
             antallTapt = antallTapt + 1;
             Log.d("Antall feil ", String.valueOf(antallTapt));
             oppgaverUtført = oppgaverUtført + 1;

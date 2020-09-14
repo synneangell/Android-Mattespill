@@ -42,6 +42,7 @@
     <string name="slettFremgang">Der Fortschritt des Spiels wird weg sein. Sind Sie sicher, dass Sie aufhören wollen?</string>
     <string name="riktig">Richtig!</string>
     <string name="feil">Error!</string>
+    <string name="ingenFlereOppgaver">Keine Aufgaben mehr!</string>
 
     <string name="fem">5</string>
     <string name="ti">10</string>
