@@ -9,14 +9,14 @@
 
     <TextView
         android:id="@+id/byttSpråk"
-        android:layout_width="204dp"
-        android:layout_height="81dp"
-        android:layout_marginStart="129dp"
-        android:layout_marginLeft="129dp"
-        android:layout_marginTop="375dp"
-        android:layout_marginEnd="130dp"
-        android:layout_marginRight="130dp"
-        android:layout_marginBottom="310dp"
+        android:layout_width="143dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginLeft="134dp"
+        android:layout_marginTop="408dp"
+        android:layout_marginEnd="134dp"
+        android:layout_marginRight="134dp"
+        android:layout_marginBottom="273dp"
         android:text="@string/byttSpråk"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
@@ -27,16 +27,16 @@
 
     <Button
         android:id="@+id/btnNorsk"
-        android:onClick="norsk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
         android:layout_marginLeft="76dp"
-        android:layout_marginTop="457dp"
+        android:layout_marginTop="458dp"
         android:layout_marginEnd="235dp"
         android:layout_marginRight="235dp"
-        android:layout_marginBottom="199dp"
+        android:layout_marginBottom="198dp"
         android:background="@drawable/norskflagg"
+        android:onClick="norsk"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,16 +44,16 @@
 
     <Button
         android:id="@+id/btnTysk"
-        android:onClick="tysk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="238dp"
         android:layout_marginLeft="238dp"
-        android:layout_marginTop="457dp"
+        android:layout_marginTop="458dp"
         android:layout_marginEnd="73dp"
         android:layout_marginRight="73dp"
-        android:layout_marginBottom="199dp"
+        android:layout_marginBottom="198dp"
         android:background="@drawable/tyskflagg"
+        android:onClick="tysk"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,14 +61,14 @@
 
     <TextView
         android:id="@+id/antallOppgaver"
-        android:layout_width="298dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="83dp"
-        android:layout_marginLeft="83dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="59dp"
-        android:layout_marginRight="59dp"
-        android:layout_marginBottom="539dp"
+        android:layout_width="222dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginLeft="107dp"
+        android:layout_marginTop="135dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginRight="82dp"
+        android:layout_marginBottom="554dp"
         android:text="@string/antallOppgaver"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
@@ -79,16 +79,16 @@
 
     <RadioGroup
         android:id="@+id/radiogroup"
-        android:layout_width="186dp"
-        android:layout_height="103dp"
-        android:key="radiogroup"
+        android:layout_width="245dp"
+        android:layout_height="110dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="155dp"
-        android:layout_marginLeft="155dp"
-        android:layout_marginTop="209dp"
-        android:layout_marginEnd="93dp"
-        android:layout_marginRight="93dp"
-        android:layout_marginBottom="417dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="193dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="428dp"
+        android:key="radiogroup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,21 +96,18 @@
 
         <RadioButton
             android:id="@+id/radio5Opg"
-
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:layout_marginRight="20dp"
-            android:text="@string/radio_5oppg"
-            android:textSize="20dp"
-            tools:layout_editor_absoluteX="76dp"
-            tools:layout_editor_absoluteY="221dp" />
+            android:checked="true"
+            android:text="@string/fem"
+            android:textSize="20dp" />
 
         <RadioButton
             android:id="@+id/radio10Opg"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginRight="20dp"
-            android:text="@string/radio_10oppg"
+            android:text="@string/ti"
             android:textSize="20dp"
             tools:layout_editor_absoluteX="176dp"
             tools:layout_editor_absoluteY="221dp" />
@@ -120,11 +117,28 @@
             android:layout_width="144dp"
             android:layout_height="31dp"
             android:layout_marginRight="20dp"
-            android:text="@string/radio_25oppg"
+            android:text="@string/tjuefem"
             android:textSize="20dp"
             tools:layout_editor_absoluteX="282dp"
             tools:layout_editor_absoluteY="221dp" />
+
     </RadioGroup>
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="143dp"
+        android:layout_marginLeft="143dp"
+        android:layout_marginTop="310dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginRight="180dp"
+        android:layout_marginBottom="373dp"
+        android:text="@string/Velg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

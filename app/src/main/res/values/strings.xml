@@ -47,10 +47,15 @@
     <string name="ti">10</string>
     <string name="tjuefem">25</string>
 
-    <string name="btn5oppg">5 oppgaver</string>
-    <string name="btn10oppg">10 oppgaver</string>
-    <string name="btn25oppg">25 oppgaver</string>
-    <string name="ingenFlereOppgaver">Ingen flere oppgaver!</string>
+    <string name="norsk">Norsk</string>
+    <string name="tysk">Tysk</string>
+
+    <string name="velgSpråk">Velg språk</string>
+    <string name="språk">Språk</string>
+    <string name="antallStykker">Antall stykker</string>
+    <string name="velgAntall">Velg antall</string>
+
+    <string name="Velg">Velg</string>
 
 
 

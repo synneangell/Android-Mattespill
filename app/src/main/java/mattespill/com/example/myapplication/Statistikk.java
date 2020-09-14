@@ -2,8 +2,6 @@ package mattespill.com.example.myapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +10,9 @@ import android.widget.TextView;
 public class Statistikk extends AppCompatActivity {
     TextView txtStat_vunnet_svar, txtStat_tapt_svar;
     TextView antallVunnet, antallTapt;
-    Integer vunnet, tapt;
+    Integer totaltAntallRiktige, totaltAntallFeil;
     SharedPreferences sp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +23,16 @@ public class Statistikk extends AppCompatActivity {
         antallTapt = findViewById(R.id.txtStat_tapt_svar);
 
         sp = getApplicationContext().getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
-        vunnet = sp.getInt("antallVunnet", 0);
-        tapt = sp.getInt("antallTapt", 0);
-        antallVunnet.setText(" "+vunnet);
-        antallTapt.setText(" "+tapt);
+        totaltAntallRiktige = sp.getInt("totaltAntallRiktige", 0);
+        totaltAntallFeil = sp.getInt("totaltAntallRiktige", 0);
+
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("totaltAntallRiktige", totaltAntallRiktige);
+        editor.putInt("totaltAntallFeil", totaltAntallFeil);
+        editor.apply();
+
+        antallVunnet.setText(" "+ totaltAntallRiktige);
+        antallTapt.setText(" "+ totaltAntallFeil);
     }
 
     public void slett(View v){
@@ -39,23 +44,23 @@ public class Statistikk extends AppCompatActivity {
     }
 
     public void slettStatistikken(){
-        antallVunnet.setText(""+0);
-        antallTapt.setText(""+0);
-        vunnet = 0;
-        tapt = 0;
+        totaltAntallRiktige = 0;
+        totaltAntallFeil = 0;
+        antallVunnet.setText(""+ totaltAntallRiktige);
+        antallTapt.setText(""+ totaltAntallFeil);
     }
 
     @Override
     protected void onSaveInstanceState (Bundle saveInstanceState){
         super.onSaveInstanceState(saveInstanceState);
-        saveInstanceState.putInt("antallVunnet", vunnet);
-        saveInstanceState.putInt("antallTapt", tapt);
+        saveInstanceState.putInt("totaltAntallRiktig", totaltAntallRiktige);
+        saveInstanceState.putInt("totaltAntallFeil", totaltAntallFeil);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
-        vunnet = savedInstanceState.getInt("antallVunnet");
-        tapt = savedInstanceState.getInt("antallTapt");
+        totaltAntallRiktige = savedInstanceState.getInt("totaltAntallRiktig");
+        totaltAntallFeil = savedInstanceState.getInt("totaltAntallFeil");
     }
 }

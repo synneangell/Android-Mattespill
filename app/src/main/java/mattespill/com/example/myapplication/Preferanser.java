@@ -10,8 +10,10 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -23,68 +25,65 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Locale;
 
-public class Preferanser extends AppCompatActivity {
+public class Preferanser extends PreferenceActivity {
     RadioGroup radiogroup;
-    RadioButton radio5Opg;
-    RadioButton radio10Opg;
-    RadioButton radio25Opg;
-    RadioButton valgt;
-    Integer antallStykker;
+    RadioButton radioButton;
+    Integer antallStykker = 3;
     SharedPreferences sp;
     SharedPreferences sp2;
     TextView antallVunnet, antallTapt;
+    Button btnDisplay;
 
-    /**
-     * FORSØK PÅ Å BYTTE UT RADIO MED KNAPPER
-     */
-    Button oppg5, oppg10, oppg25;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preferanser);
+        //setContentView(R.layout.activity_preferanser);
 
-        radiogroup = findViewById(R.id.radiogroup);
-        radio5Opg = findViewById(R.id.radio5Opg);
-        radio10Opg = findViewById(R.id.radio10Opg);
-        radio25Opg = findViewById(R.id.radio25Opg);
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new PreferanseFragment()).commit();
 
-        antallStykker = radioValgt();
+        SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        String språk = pref.getString("velgSpråk_preference", "no");
+        settLand(språk);
 
-        sp = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
+        //addListenerOnButton();
+
+
+       /* sp = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt("radioValgt", antallStykker);
-        editor.apply();
+        editor.apply();*/
 
 /*        sp2 = getSharedPreferences("PreferanserSpråk", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor2 = sp.edit();
         editor2.putInt("sprakValgt", );
         editor2.commit();*/
+
     }
+/*
 
-    public int radioValgt(){
-        int antallValgt = 3;
+    public Integer addListenerOnButton(){
+        radiogroup = (RadioGroup) findViewById(R.id.radiogroup);
+        btnDisplay = (Button) findViewById(R.id.btn);
 
+        btnDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // get selected radio button from radioGroup
+                int selectedId = radiogroup.getCheckedRadioButtonId();
 
-        // Bruke noe annet enn radiobuttons!! Får ikke hentet ut verdien til radiobutton
+                // find the radiobutton by returned id
+                radioButton = (RadioButton) findViewById(selectedId);
 
-        /*int valgtRadio = radiogroup.getCheckedRadioButtonId();
-        valgt = (RadioButton) findViewById(valgtRadio);
+                Log.d("Valgt i pref", radioButton.getText().toString());
+                antallStykker = Integer.valueOf(radioButton.getText().toString());
 
-        Log.d("Valgt", valgt.toString() );*/
-        /*
-        if(valgt.toString().equals(5)){
-            antallValgt = 5;
-        }
-
-        else if(valgt.toString().equals(10)){
-            antallValgt = 10;
-        }
-        else {
-            antallValgt = 25;
-        }*/
-        return antallValgt;
+            }
+        });
+        return antallStykker;
     }
+*/
 
     public void settLand(String landskode){
         Resources res = getResources();
@@ -103,23 +102,16 @@ public class Preferanser extends AppCompatActivity {
         settLand("no");
         recreate();
     }
-
+/*
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putBoolean("radio5Opg", radio5Opg.isChecked());
-        savedInstanceState.putBoolean("radio10Opg", radio10Opg.isChecked());
-        savedInstanceState.putBoolean("radio25Opg", radio25Opg.isChecked());
-        savedInstanceState.putInt("radioValgt", radioValgt());
-
+        savedInstanceState.putInt("radioValgt", antallStykker);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        radio5Opg.setChecked(savedInstanceState.getBoolean("task5", false));
-        radio5Opg.setChecked(savedInstanceState.getBoolean("task10", false));
-        radio5Opg.setChecked(savedInstanceState.getBoolean("task25", false));
         antallStykker = savedInstanceState.getInt("radioValgt");
-    }
+    }*/
 }

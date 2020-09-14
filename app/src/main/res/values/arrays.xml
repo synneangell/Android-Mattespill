@@ -55,4 +55,15 @@
         <item>20</item>
         <item>10</item>
     </string-array>
+
+    <string-array name="antallStykker">
+        <item>5</item>
+        <item>10</item>
+        <item>25</item>
+    </string-array>
+
+    <string-array name="velgSpråk">
+        <item>@string/norsk</item>
+        <item>@string/tysk</item>
+    </string-array>
 </resources>

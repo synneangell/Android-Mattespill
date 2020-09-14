@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,20 +16,22 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
 public class StartSpill extends AppCompatActivity {
 
     List<String> oppgArray;
     List<String> svarArray;
+    //List<Integer> indekserBrukt = new ArrayList<>(25);
     TextView textBrukersvar;
     TextView textRegnestykket;
     TextView textAntallRiktig;
     TextView textOppgaverIgjen;
     Integer oppgaverUtført = 0;
+    Integer totaltAntallRiktig;
+    Integer totaltAntallFeil;
     Integer antallRiktig = 0;
-    Integer antallTapt = 0;
+    Integer antallFeil = 0;
     Integer antallStykker;
     Integer teller = 0;
     Integer indeks = -1;
@@ -42,13 +44,17 @@ public class StartSpill extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_spill);
 
-        sp = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
-        antallStykker = sp.getInt("radioValgt", 5);
-        Log.d("Antall stykker: ", antallStykker.toString());
+        SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        String antall = pref.getString("antallstykker_preference", "0");
 
 
-        //Log.d("Antall riktig i startSpill", String.valueOf(antallRiktig));
-        //Log.d("Antall feil i startSpill", String.valueOf(antallTapt));
+
+        //sp = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
+
+        antallStykker = Integer.valueOf(antall);
+        Log.d("Antall stykker", antallStykker.toString());
+
 
         oppgArray = Arrays.asList(getResources().getStringArray(R.array.regnestykker));
         svarArray = Arrays.asList(getResources().getStringArray(R.array.regnestykkerSvar));
@@ -135,38 +141,41 @@ public class StartSpill extends AppCompatActivity {
         });
     }
 
-    /*
-
-    public void valgtRadiobutton(){
-        Intent intent = getIntent();
-        String valgt = intent.getStringExtra("valgtRadio");
-
-        if(valgt.equals("5")){
-            teller = 5;
-        } else if(valgt.equals("10")){
-            teller = 10;
-        } else if(valgt.equals("25")){
-            teller = 25;
-        }
-    } */
 
     @Override
     public void onBackPressed(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(StartSpill.this);
-        builder.setMessage(getResources().getString(R.string.slettFremgang))
-                .setPositiveButton(getResources().getString(R.string.ja), (DialogInterface, f)  -> {
-                    finish();
-                    antallRiktig = 0;
-                    antallTapt = 0;
-        })
-                .setNegativeButton(getResources().getString(R.string.nei), null).show();
+        builder.setMessage(getResources().getString(R.string.slettFremgang));
+        builder.setCancelable(true);
+        builder.setNegativeButton(getResources().getString(R.string.nei), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+                antallRiktig = 0;
+                antallFeil = 0;
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     public void randomGenerator(){
         if(teller == antallStykker){ //Avslutter spillet dersom antall stykker er nådd
+            sp = getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            //editor.putInt("antallVunnet", totaltAntallRiktig);
+            //editor.putInt("antallTapt", totaltAntallFeil);
+            //editor.commit();
+
+
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            Toast toast = new Toast(this);
-            Toast.makeText(StartSpill.this, getResources().getString(R.string.ingenFlereOppgaver), Toast.LENGTH_SHORT).show();
                 builder.setMessage(getResources().getString(R.string.nyttSpill))
                         .setCancelable(false)
                         .setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
@@ -229,12 +238,14 @@ public class StartSpill extends AppCompatActivity {
             toast.show();
             Toast.makeText(StartSpill.this, getResources().getString(R.string.riktig), Toast.LENGTH_SHORT).show();
             antallRiktig = antallRiktig +  1;
+            totaltAntallRiktig += antallRiktig;
             oppgaverUtført = oppgaverUtført + 1;
             brukersvar = "";
             textBrukersvar.setText(brukersvar);
+            Log.d("Antall riktig", String.valueOf(antallRiktig));
             randomGenerator();
         }
-        else {
+        else{
             Toast toast = new Toast(this);
             ImageView view = new ImageView(this);
             view.setImageResource(R.drawable.image_icon2);
@@ -244,33 +255,30 @@ public class StartSpill extends AppCompatActivity {
             toast.show();
             Toast.makeText(StartSpill.this, getResources().getString(R.string.feil), Toast.LENGTH_SHORT).show();
             brukersvar = "";
-            antallTapt = antallTapt + 1;
-            Log.d("Antall feil ", String.valueOf(antallTapt));
+            //La til denne for å registrere hvor mange feil, slik at jeg kan putte det i statistikken
+            antallFeil = antallFeil + 1;
+            //totaltAntallFeil += antallFeil;
+            Log.d("Antall feil ", String.valueOf(antallFeil));
             oppgaverUtført = oppgaverUtført + 1;
             textBrukersvar.setText(brukersvar);
             randomGenerator();
         }
         textOppgaverIgjen.setText(antallRiktig.toString() + "/" + oppgaverUtført.toString());
 
-        sp = getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putInt("antallVunnet", antallRiktig);
-        editor.putInt("antallTapt", antallTapt);
-        editor.commit();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt("antallVunnet", antallRiktig);
-        savedInstanceState.putInt("antallTapt", antallTapt);
+        savedInstanceState.putInt("antallTapt", antallFeil);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         antallRiktig = savedInstanceState.getInt("antallVunnet");
-        antallTapt = savedInstanceState.getInt("antallTapt");
+        antallFeil = savedInstanceState.getInt("antallTapt");
     }
 }
 
