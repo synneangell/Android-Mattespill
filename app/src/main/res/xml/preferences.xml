@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
+    <CheckBoxPreference android:title="Musikk"
+        android:defaultValue="false"
+        android:summary="Musikk av/på"
+        android:key="checkbox_preference" />
+    <EditTextPreference android:title="Brukernavn"
+        android:key="edittext_preference"
+        android:summary="Sett defaultbrukernavn">
+    </EditTextPreference> -->
+    <ListPreference android:title="@string/antallStykker"
+        android:key="antallstykker_preference"
+        android:summary="@string/velgAntall"
+        android:entryValues="@array/antallStykker"
+        android:entries="@array/antallStykker">
+    </ListPreference>
+
+    <ListPreference android:title="@string/språk"
+        android:key="velgSpråk_preference"
+        android:summary="@string/velgSpråk"
+        android:entryValues="@array/velgSpråk"
+        android:entries="@array/velgSpråk">
+    </ListPreference>
+</PreferenceScreen>

@@ -47,4 +47,13 @@
     <string name="ti">10</string>
     <string name="tjuefem">25</string>
 
+    <string name="norsk">Norwegische</string>
+    <string name="tysk">Deutsche</string>
+
+    <string name="velgSpråk">Wähle deine Sprache</string>
+    <string name="språk">Sprache</string>
+    <string name="antallStykker">Anzahl der Stücke</string>
+    <string name="velgAntall">Nummer auswählen</string>
+
+    <string name="Velg">Wählen</string>
 </resources>
