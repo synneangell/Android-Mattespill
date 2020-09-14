@@ -44,7 +44,6 @@ public class StartSpill extends AppCompatActivity {
     Integer spillVunnet = 0;
     Integer spillTapt = 0;
     SharedPreferences sp;
-    SharedPreferences sp2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +173,8 @@ public class StartSpill extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 finish();
+                antallRiktig = 0;
+                antallTapt = 0;
             }
         });
         AlertDialog alertDialog = builder.create();
@@ -270,31 +271,25 @@ public class StartSpill extends AppCompatActivity {
         }
         textOppgaverIgjen.setText(antallRiktig.toString() + "/" + oppgaverUtført.toString());
 
-        sp2 = getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp2.edit();
+        sp = getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
         editor.putInt("antallVunnet", antallRiktig);
         editor.putInt("antallTapt", antallTapt);
         editor.commit();
     }
 
-
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        /*outState.putString("playerAnswer", textAnswer);
-        outState.putString("currentAnswer", setAnswer.getText().toString());
-        outState.putString("currentCalc", calcQuestion.getText().toString());
-        */
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt("antallVunnet", antallRiktig);
+        savedInstanceState.putInt("antallTapt", antallTapt);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        /*
-        textAnswer = savedInstanceState.getString("currentAnswer");
-        setAnswer.setText(savedInstanceState.getString("playerAnswer"));
-        calcQuestion.setText(savedInstanceState.getString("currentCalc"));
-        */
+        antallRiktig = savedInstanceState.getInt("antallVunnet");
+        antallTapt = savedInstanceState.getInt("antallTapt");
     }
 }
 
