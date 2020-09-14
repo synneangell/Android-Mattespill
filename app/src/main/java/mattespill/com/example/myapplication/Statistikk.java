@@ -29,9 +29,7 @@ public class Statistikk extends AppCompatActivity {
         antallVunnet.setText(" "+vunnet);
         antallTapt.setText(" "+tapt);
     }
-    /**
-     * Funker ikke. Hver gang jeg bekrefter at jeg vil slette alt så går den til startside
-     */
+
     public void slett(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(getResources().getString(R.string.stat_slettBtn))
@@ -39,14 +37,12 @@ public class Statistikk extends AppCompatActivity {
                 .setNegativeButton(getResources().getString(R.string.nei), null)
                 .show();
     }
-    /**
-     * Funker ikke å slette, må fikse på denne
-     */
+
     public void slettStatistikken(){
-        txtStat_vunnet_svar.setText(""+0); //dette er for det synlige txtField i layout
-        txtStat_tapt_svar.setText(""+0);
-        //this.antallVunnet = 0; //dette er det faktiske antallet vunnede spill
-        //this.antallTapt = 0; //dette er det faktiske antallet tapte spill
+        antallVunnet.setText(""+0);
+        antallTapt.setText(""+0);
+        vunnet = 0;
+        tapt = 0;
     }
 
     @Override
@@ -63,6 +59,3 @@ public class Statistikk extends AppCompatActivity {
         tapt = savedInstanceState.getInt("antallTapt");
     }
 }
-//TODO: Gjøre sånn at statistikken samlet seg opp hvis man velger å spille flere spill?
-//TODO: Fikse slettStatistikk-knappen. Krasjer når jeg vil slette statistikken
-//TODO:
