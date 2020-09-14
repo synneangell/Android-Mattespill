@@ -23,8 +23,6 @@ public class Statistikk extends AppCompatActivity {
         antallVunnet = findViewById(R.id.txtStat_vunnet_svar);
         antallTapt = findViewById(R.id.txtStat_tapt_svar);
 
-        //int antVunnet = Integer.parseInt(antallVunnet);
-
         sp = getApplicationContext().getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
         vunnet = sp.getInt("antallVunnet", 0);
         tapt = sp.getInt("antallTapt", 0);

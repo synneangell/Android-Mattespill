@@ -34,6 +34,11 @@ public class Preferanser extends AppCompatActivity {
     SharedPreferences sp2;
     TextView antallVunnet, antallTapt;
 
+    /**
+     * FORSØK PÅ Å BYTTE UT RADIO MED KNAPPER
+     */
+    Button oppg5, oppg10, oppg25;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
