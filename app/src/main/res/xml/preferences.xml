@@ -20,7 +20,8 @@
     <ListPreference android:title="@string/språk"
         android:key="velgSpråk_preference"
         android:summary="@string/velgSpråk"
-        android:entryValues="@array/velgSpråk"
-        android:entries="@array/velgSpråk">
+        android:entries="@array/velgSpråk"
+        android:entryValues="@array/landskode"
+        android:onClick="onClick">
     </ListPreference>
 </PreferenceScreen>

@@ -21,14 +21,11 @@ import java.util.Random;
 public class StartSpill extends AppCompatActivity {
     List<String> oppgArray;
     List<String> svarArray;
-    //List<Integer> indekserBrukt = new ArrayList<>(25);
     TextView textBrukersvar;
     TextView textRegnestykket;
     TextView textAntallRiktig;
     TextView textOppgaverIgjen;
     Integer oppgaverUtført = 0;
-    Integer totaltAntallRiktig;
-    Integer totaltAntallFeil;
     Integer antallRiktig = 0;
     Integer antallFeil = 0;
     Integer antallStykker;
@@ -47,11 +44,7 @@ public class StartSpill extends AppCompatActivity {
                 .getDefaultSharedPreferences(this);
         String antall = pref.getString("antallstykker_preference", "0");
 
-        //sp = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
-
         antallStykker = Integer.valueOf(antall);
-        Log.d("Antall stykker", antallStykker.toString());
-
 
         oppgArray = Arrays.asList(getResources().getStringArray(R.array.regnestykker));
         svarArray = Arrays.asList(getResources().getStringArray(R.array.regnestykkerSvar));
@@ -61,7 +54,6 @@ public class StartSpill extends AppCompatActivity {
         textOppgaverIgjen = (TextView)findViewById(R.id.textOppgaverIgjen);
         random = new Random();
 
-        //valgtRadiobutton();
         randomGenerator();
 
         //Lytter på knappene
@@ -199,10 +191,7 @@ public class StartSpill extends AppCompatActivity {
             while (indeks == forrigeIndeks) {
                 indeks = random.nextInt(øvreGrense);
             }
-            Log.d("Verdien til n i random", String.valueOf(indeks));
-
             textRegnestykket.setText(oppgArray.get(indeks));
-            Log.d("Stykke", oppgArray.get(indeks));
         }
     }
 
@@ -216,7 +205,6 @@ public class StartSpill extends AppCompatActivity {
         String input = String.valueOf(nummer);
         brukersvar = brukersvar + input;
         textBrukersvar.setText(brukersvar);
-        Log.d("Test", brukersvar);
     }
 
     //Metode som sjekker om svar er riktig/feil
@@ -235,7 +223,6 @@ public class StartSpill extends AppCompatActivity {
             oppgaverUtført = oppgaverUtført + 1;
             brukersvar = "";
             textBrukersvar.setText(brukersvar);
-            Log.d("Antall riktig", String.valueOf(antallRiktig));
             randomGenerator();
         }
         else{
@@ -250,7 +237,6 @@ public class StartSpill extends AppCompatActivity {
             brukersvar = "";
             //La til denne for å registrere hvor mange feil, slik at jeg kan putte det i statistikken
             antallFeil = antallFeil + 1;
-            //totaltAntallFeil = totaltAntallFeil + antallFeil;
             oppgaverUtført = oppgaverUtført + 1;
             textBrukersvar.setText(brukersvar);
             randomGenerator();
