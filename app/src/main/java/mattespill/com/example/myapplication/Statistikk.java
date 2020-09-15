@@ -3,9 +3,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class Statistikk extends AppCompatActivity {
     TextView antallRiktig, antallFeil;
@@ -16,6 +22,11 @@ public class Statistikk extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistikk);
+
+        SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        String språk = pref.getString("velgSpråk_preference", "no");
+        settLand(språk);
 
         antallRiktig = findViewById(R.id.txtStat_vunnet_svar);
         antallFeil = findViewById(R.id.txtStat_tapt_svar);
@@ -48,8 +59,13 @@ public class Statistikk extends AppCompatActivity {
     public void slettStatistikken(){
         totaltAntallRiktige = 0;
         totaltAntallFeil = 0;
-        antallRiktig.setText(""+ totaltAntallRiktige);
-        antallFeil.setText(""+ totaltAntallFeil);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("totaltAntallRiktige", totaltAntallRiktige);
+        editor.putInt("totaltAntallFeil", totaltAntallFeil);
+        editor.apply();
+
+        antallRiktig.setText(totaltAntallRiktige.toString());
+        antallFeil.setText(totaltAntallFeil.toString());
     }
     @Override
     protected void onSaveInstanceState (Bundle saveInstanceState){
@@ -62,5 +78,23 @@ public class Statistikk extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         totaltAntallRiktige = savedInstanceState.getInt("totaltAntallRiktig");
         totaltAntallFeil = savedInstanceState.getInt("totaltAntallFeil");
+    }
+
+    public void settLand(String landskode){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration cf = res.getConfiguration();
+        cf.setLocale(new Locale(landskode));
+        res.updateConfiguration(cf, dm);
+    }
+
+    public void tysk(View v){
+        settLand("de");
+        recreate();
+    }
+
+    public void norsk(View v){
+        settLand("no");
+        recreate();
     }
 }

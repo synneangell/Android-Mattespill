@@ -5,17 +5,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class StartSpill extends AppCompatActivity {
@@ -43,6 +46,8 @@ public class StartSpill extends AppCompatActivity {
         SharedPreferences pref = PreferenceManager
                 .getDefaultSharedPreferences(this);
         String antall = pref.getString("antallstykker_preference", "0");
+        String språk = pref.getString("velgSpråk_preference", "no");
+        settLand(språk);
 
         antallStykker = Integer.valueOf(antall);
 
@@ -246,14 +251,32 @@ public class StartSpill extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putInt("antallVunnet", antallRiktig);
-        savedInstanceState.putInt("antallTapt", antallFeil);
+        savedInstanceState.putInt("antallRiktig", antallRiktig);
+        savedInstanceState.putInt("antallFeil", antallFeil);
     }
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        antallRiktig = savedInstanceState.getInt("antallVunnet");
-        antallFeil = savedInstanceState.getInt("antallTapt");
+        antallRiktig = savedInstanceState.getInt("antallRiktig");
+        antallFeil = savedInstanceState.getInt("antallFeil");
+    }
+
+    public void settLand(String landskode){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration cf = res.getConfiguration();
+        cf.setLocale(new Locale(landskode));
+        res.updateConfiguration(cf, dm);
+    }
+
+    public void tysk(View v){
+        settLand("de");
+        recreate();
+    }
+
+    public void norsk(View v){
+        settLand("no");
+        recreate();
     }
 }
 
