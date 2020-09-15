@@ -1,32 +1,19 @@
 package mattespill.com.example.myapplication;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 import java.util.Locale;
 
-public class Preferanser extends PreferenceActivity {
+public class Preferanser extends PreferenceActivity implements
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +25,8 @@ public class Preferanser extends PreferenceActivity {
                 .getDefaultSharedPreferences(this);
         String språk = pref.getString("velgSpråk_preference", "no");
         settLand(språk);
+
+
     }
 
     public void onClick (Preference preference) {
@@ -70,4 +59,15 @@ public class Preferanser extends PreferenceActivity {
         recreate();
     }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if(s.equals("no")){
+            settLand("no");
+            recreate();
+        }
+        else{
+            settLand("de");
+            recreate();
+        }
+    }
 }
