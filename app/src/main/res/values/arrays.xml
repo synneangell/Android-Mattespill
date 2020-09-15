@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- ARRAYS BRUKT I STARTSPILL -->
     <string-array name="regnestykker">
         <item>5 + 2 = </item>
         <item>19 + 3 = </item>
@@ -56,6 +58,7 @@
         <item>10</item>
     </string-array>
 
+    <!-- ARRAYS BRUKT I PREFERANSER -->
     <string-array name="antallStykker">
         <item>5</item>
         <item>10</item>
@@ -66,4 +69,9 @@
         <item>@string/norsk</item>
         <item>@string/tysk</item>
     </string-array>
+    <string-array name="landskode">
+        <item>@string/no</item>
+        <item>@string/de</item>
+    </string-array>
+
 </resources>

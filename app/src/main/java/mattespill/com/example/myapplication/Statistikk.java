@@ -3,9 +3,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class Statistikk extends AppCompatActivity {
     TextView txtStat_vunnet_svar, txtStat_tapt_svar;
@@ -18,6 +24,11 @@ public class Statistikk extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistikk);
+
+        SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        String språk = pref.getString("velgSpråk_preference", "no");
+        settLand(språk);
 
         antallVunnet = findViewById(R.id.txtStat_vunnet_svar);
         antallTapt = findViewById(R.id.txtStat_tapt_svar);
@@ -62,5 +73,23 @@ public class Statistikk extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         totaltAntallRiktige = savedInstanceState.getInt("totaltAntallRiktig");
         totaltAntallFeil = savedInstanceState.getInt("totaltAntallFeil");
+    }
+
+    public void settLand(String landskode){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration cf = res.getConfiguration();
+        cf.setLocale(new Locale(landskode));
+        res.updateConfiguration(cf, dm);
+    }
+
+    public void tysk(View v){
+        settLand("de");
+        recreate();
+    }
+
+    public void norsk(View v){
+        settLand("no");
+        recreate();
     }
 }

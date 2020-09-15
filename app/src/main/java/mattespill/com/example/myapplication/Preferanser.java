@@ -11,6 +11,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -26,19 +27,10 @@ import android.widget.Toast;
 import java.util.Locale;
 
 public class Preferanser extends PreferenceActivity {
-    RadioGroup radiogroup;
-    RadioButton radioButton;
-    Integer antallStykker = 3;
-    SharedPreferences sp;
-    SharedPreferences sp2;
-    TextView antallVunnet, antallTapt;
-    Button btnDisplay;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_preferanser);
 
         getFragmentManager().beginTransaction().replace(android.R.id.content, new PreferanseFragment()).commit();
 
@@ -46,44 +38,19 @@ public class Preferanser extends PreferenceActivity {
                 .getDefaultSharedPreferences(this);
         String språk = pref.getString("velgSpråk_preference", "no");
         settLand(språk);
-
-        //addListenerOnButton();
-
-
-       /* sp = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putInt("radioValgt", antallStykker);
-        editor.apply();*/
-
-/*        sp2 = getSharedPreferences("PreferanserSpråk", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor2 = sp.edit();
-        editor2.putInt("sprakValgt", );
-        editor2.commit();*/
-
     }
-/*
 
-    public Integer addListenerOnButton(){
-        radiogroup = (RadioGroup) findViewById(R.id.radiogroup);
-        btnDisplay = (Button) findViewById(R.id.btn);
-
-        btnDisplay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // get selected radio button from radioGroup
-                int selectedId = radiogroup.getCheckedRadioButtonId();
-
-                // find the radiobutton by returned id
-                radioButton = (RadioButton) findViewById(selectedId);
-
-                Log.d("Valgt i pref", radioButton.getText().toString());
-                antallStykker = Integer.valueOf(radioButton.getText().toString());
-
-            }
-        });
-        return antallStykker;
+    public void onClick (Preference preference) {
+        if (preference.getKey().equals("no")) {
+            Log.d("toString",preference.toString());
+            Log.d("getKey", preference.getKey());
+            settLand("no");
+        } else {
+            Log.d("toString",preference.toString());
+            Log.d("getKey", preference.getKey());
+            settLand("de");
+        }
     }
-*/
 
     public void settLand(String landskode){
         Resources res = getResources();
@@ -102,16 +69,5 @@ public class Preferanser extends PreferenceActivity {
         settLand("no");
         recreate();
     }
-/*
-    @Override
-    protected void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putInt("radioValgt", antallStykker);
-    }
 
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        antallStykker = savedInstanceState.getInt("radioValgt");
-    }*/
 }
