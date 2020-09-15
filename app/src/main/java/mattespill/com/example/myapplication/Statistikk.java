@@ -9,9 +9,8 @@ import android.widget.TextView;
 
 public class Statistikk extends AppCompatActivity {
     TextView antallRiktig, antallFeil;
-    Integer totaltAntallRiktige, totaltAntallFeil;
+    Integer totaltAntallRiktige, totaltAntallFeil, currentAntallRiktig, currentAntallFeil;
     SharedPreferences sp;
-    private String riktig, feil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +21,14 @@ public class Statistikk extends AppCompatActivity {
         antallFeil = findViewById(R.id.txtStat_tapt_svar);
 
         sp = getApplicationContext().getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
-        totaltAntallRiktige = sp.getInt("antallRiktig", 0);
-        totaltAntallFeil = sp.getInt("antallFeil", 0);
+        currentAntallRiktig = sp.getInt("antallRiktig", 0);
+        currentAntallFeil = sp.getInt("antallFeil", 0);
+
+        totaltAntallRiktige = sp.getInt("totaltAntallRiktige", 0);
+        totaltAntallFeil = sp.getInt("totaltAntallFeil", 0);
+
+        totaltAntallRiktige += currentAntallRiktig;
+        totaltAntallFeil += currentAntallFeil;
 
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt("totaltAntallRiktige", totaltAntallRiktige);
