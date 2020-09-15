@@ -62,6 +62,8 @@ public class Statistikk extends AppCompatActivity {
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt("totaltAntallRiktige", totaltAntallRiktige);
         editor.putInt("totaltAntallFeil", totaltAntallFeil);
+        editor.putInt("antallRiktig", 0);
+        editor.putInt("antallFeil", 0);
         editor.apply();
 
         antallRiktig.setText(totaltAntallRiktige.toString());
