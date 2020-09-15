@@ -13,13 +13,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class StartSpill extends AppCompatActivity {
-
     List<String> oppgArray;
     List<String> svarArray;
     //List<Integer> indekserBrukt = new ArrayList<>(25);
@@ -47,8 +46,6 @@ public class StartSpill extends AppCompatActivity {
         SharedPreferences pref = PreferenceManager
                 .getDefaultSharedPreferences(this);
         String antall = pref.getString("antallstykker_preference", "0");
-
-
 
         //sp = getSharedPreferences("Preferanser", Context.MODE_PRIVATE);
 
@@ -141,7 +138,6 @@ public class StartSpill extends AppCompatActivity {
         });
     }
 
-
     @Override
     public void onBackPressed(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(StartSpill.this);
@@ -167,13 +163,14 @@ public class StartSpill extends AppCompatActivity {
 
     public void randomGenerator(){
         if(teller == antallStykker){ //Avslutter spillet dersom antall stykker er nådd
+
             sp = getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
-            //editor.putInt("antallVunnet", totaltAntallRiktig);
-            //editor.putInt("antallTapt", totaltAntallFeil);
-            //editor.commit();
-
-
+            editor.putInt("antallRiktig", antallRiktig);
+            editor.putInt("antallFeil", antallFeil);
+            //editor.putInt("totaltAntallFeil", totaltAntallFeil);
+            //editor.putInt("totaltAntallRiktig", totaltAntallRiktig);
+            editor.commit();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(getResources().getString(R.string.nyttSpill))
@@ -204,7 +201,6 @@ public class StartSpill extends AppCompatActivity {
             while (indeks == forrigeIndeks) {
                 indeks = random.nextInt(øvreGrense);
             }
-
             Log.d("Verdien til n i random", String.valueOf(indeks));
 
             textRegnestykket.setText(oppgArray.get(indeks));
@@ -238,7 +234,6 @@ public class StartSpill extends AppCompatActivity {
             toast.show();
             Toast.makeText(StartSpill.this, getResources().getString(R.string.riktig), Toast.LENGTH_SHORT).show();
             antallRiktig = antallRiktig +  1;
-            totaltAntallRiktig += antallRiktig;
             oppgaverUtført = oppgaverUtført + 1;
             brukersvar = "";
             textBrukersvar.setText(brukersvar);
@@ -257,23 +252,19 @@ public class StartSpill extends AppCompatActivity {
             brukersvar = "";
             //La til denne for å registrere hvor mange feil, slik at jeg kan putte det i statistikken
             antallFeil = antallFeil + 1;
-            //totaltAntallFeil += antallFeil;
-            Log.d("Antall feil ", String.valueOf(antallFeil));
+            //totaltAntallFeil = totaltAntallFeil + antallFeil;
             oppgaverUtført = oppgaverUtført + 1;
             textBrukersvar.setText(brukersvar);
             randomGenerator();
         }
         textOppgaverIgjen.setText(antallRiktig.toString() + "/" + oppgaverUtført.toString());
-
     }
-
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt("antallVunnet", antallRiktig);
         savedInstanceState.putInt("antallTapt", antallFeil);
     }
-
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
