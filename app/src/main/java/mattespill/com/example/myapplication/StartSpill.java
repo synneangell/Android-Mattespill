@@ -168,8 +168,6 @@ public class StartSpill extends AppCompatActivity {
             SharedPreferences.Editor editor = sp.edit();
             editor.putInt("antallRiktig", antallRiktig);
             editor.putInt("antallFeil", antallFeil);
-            //editor.putInt("totaltAntallFeil", totaltAntallFeil);
-            //editor.putInt("totaltAntallRiktig", totaltAntallRiktig);
             editor.commit();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class Statistikk extends AppCompatActivity {
     TextView antallRiktig, antallFeil;
-    Integer totaltAntallRiktige, totaltAntallFeil;
+    Integer totaltAntallRiktige, totaltAntallFeil, antallRiktigeTotalt, antallFeilTotalt;
     SharedPreferences sp;
     private String riktig, feil;
 
@@ -25,10 +25,18 @@ public class Statistikk extends AppCompatActivity {
         totaltAntallRiktige = sp.getInt("antallRiktig", 0);
         totaltAntallFeil = sp.getInt("antallFeil", 0);
 
+        antallRiktigeTotalt = sp.getInt("totaltAntallRiktig", 0);
+        antallFeilTotalt = sp.getInt("totaltAntallFeil", 0);
+
+        totaltAntallRiktige += antallRiktigeTotalt;
+        totaltAntallFeil += antallFeilTotalt;
+
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt("totaltAntallRiktige", totaltAntallRiktige);
         editor.putInt("totaltAntallFeil", totaltAntallFeil);
         editor.apply();
+
+
 
         antallRiktig.setText(" "+ totaltAntallRiktige);
         antallFeil.setText(" "+ totaltAntallFeil);
