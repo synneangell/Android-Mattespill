@@ -230,12 +230,9 @@ public class StartSpill extends AppCompatActivity {
             ImageView view = new ImageView(this);
             view.setImageResource(R.drawable.image_icon2);
             toast.setView(view);
-            //View toastView = toast.getView();
-            //toastView.setBackgroundResource(R.drawable.toast);
             toast.show();
             Toast.makeText(StartSpill.this, getResources().getString(R.string.feil), Toast.LENGTH_SHORT).show();
             brukersvar = "";
-            //La til denne for å registrere hvor mange feil, slik at jeg kan putte det i statistikken
             antallFeil = antallFeil + 1;
             oppgaverUtført = oppgaverUtført + 1;
             textBrukersvar.setText(brukersvar);
