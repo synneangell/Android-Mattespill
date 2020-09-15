@@ -26,7 +26,6 @@ public class Preferanser extends PreferenceActivity implements
         String språk = pref.getString("velgSpråk_preference", "no");
         settLand(språk);
 
-
     }
 
     public void onClick (Preference preference) {
