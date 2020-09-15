@@ -3,49 +3,36 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Locale;
-
 public class Statistikk extends AppCompatActivity {
-    TextView txtStat_vunnet_svar, txtStat_tapt_svar;
-    TextView antallVunnet, antallTapt;
+    TextView antallRiktig, antallFeil;
     Integer totaltAntallRiktige, totaltAntallFeil;
     SharedPreferences sp;
-
+    private String riktig, feil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistikk);
 
-        SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        String språk = pref.getString("velgSpråk_preference", "no");
-        settLand(språk);
-
-        antallVunnet = findViewById(R.id.txtStat_vunnet_svar);
-        antallTapt = findViewById(R.id.txtStat_tapt_svar);
+        antallRiktig = findViewById(R.id.txtStat_vunnet_svar);
+        antallFeil = findViewById(R.id.txtStat_tapt_svar);
 
         sp = getApplicationContext().getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
-        totaltAntallRiktige = sp.getInt("totaltAntallRiktige", 0);
-        totaltAntallFeil = sp.getInt("totaltAntallRiktige", 0);
+        totaltAntallRiktige = sp.getInt("antallRiktig", 0);
+        totaltAntallFeil = sp.getInt("antallFeil", 0);
 
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt("totaltAntallRiktige", totaltAntallRiktige);
         editor.putInt("totaltAntallFeil", totaltAntallFeil);
         editor.apply();
 
-        antallVunnet.setText(" "+ totaltAntallRiktige);
-        antallTapt.setText(" "+ totaltAntallFeil);
+        antallRiktig.setText(" "+ totaltAntallRiktige);
+        antallFeil.setText(" "+ totaltAntallFeil);
     }
-
     public void slett(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(getResources().getString(R.string.stat_slettBtn))
@@ -53,43 +40,22 @@ public class Statistikk extends AppCompatActivity {
                 .setNegativeButton(getResources().getString(R.string.nei), null)
                 .show();
     }
-
     public void slettStatistikken(){
         totaltAntallRiktige = 0;
         totaltAntallFeil = 0;
-        antallVunnet.setText(""+ totaltAntallRiktige);
-        antallTapt.setText(""+ totaltAntallFeil);
+        antallRiktig.setText(""+ totaltAntallRiktige);
+        antallFeil.setText(""+ totaltAntallFeil);
     }
-
     @Override
     protected void onSaveInstanceState (Bundle saveInstanceState){
         super.onSaveInstanceState(saveInstanceState);
         saveInstanceState.putInt("totaltAntallRiktig", totaltAntallRiktige);
         saveInstanceState.putInt("totaltAntallFeil", totaltAntallFeil);
     }
-
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
         totaltAntallRiktige = savedInstanceState.getInt("totaltAntallRiktig");
         totaltAntallFeil = savedInstanceState.getInt("totaltAntallFeil");
-    }
-
-    public void settLand(String landskode){
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration cf = res.getConfiguration();
-        cf.setLocale(new Locale(landskode));
-        res.updateConfiguration(cf, dm);
-    }
-
-    public void tysk(View v){
-        settLand("de");
-        recreate();
-    }
-
-    public void norsk(View v){
-        settLand("no");
-        recreate();
     }
 }
