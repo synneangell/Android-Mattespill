@@ -26,7 +26,6 @@ public class StartSpill extends AppCompatActivity {
     List<String> svarArray;
     TextView textBrukersvar;
     TextView textRegnestykket;
-    TextView textAntallRiktig;
     TextView textOppgaverIgjen;
     Integer oppgaverUtført = 0;
     Integer antallRiktig = 0;
@@ -218,11 +217,6 @@ public class StartSpill extends AppCompatActivity {
         String riktigSvar = svarArray.get(indeks);
         Log.d("n i ok-metoden", String.valueOf(indeks));
         if(svar.equals(riktigSvar)){
-            Toast toast = new Toast(this);
-            ImageView view = new ImageView(this);
-            view.setImageResource(R.drawable.image_icon);
-            toast.setView(view);
-            toast.show();
             Toast.makeText(StartSpill.this, getResources().getString(R.string.riktig), Toast.LENGTH_SHORT).show();
             antallRiktig = antallRiktig +  1;
             oppgaverUtført = oppgaverUtført + 1;
@@ -231,11 +225,6 @@ public class StartSpill extends AppCompatActivity {
             randomGenerator();
         }
         else{
-            Toast toast = new Toast(this);
-            ImageView view = new ImageView(this);
-            view.setImageResource(R.drawable.image_icon2);
-            toast.setView(view);
-            toast.show();
             Toast.makeText(StartSpill.this, getResources().getString(R.string.feil), Toast.LENGTH_SHORT).show();
             brukersvar = "";
             antallFeil = antallFeil + 1;
