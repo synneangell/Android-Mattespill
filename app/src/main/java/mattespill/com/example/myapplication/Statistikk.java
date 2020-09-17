@@ -22,6 +22,11 @@ public class Statistikk extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        String valgtSprak = pref.getString("velgSprak_preference", "no");
+        settLand(valgtSprak);
+
         setContentView(R.layout.activity_statistikk);
 
         antallRiktig = findViewById(R.id.txtStat_vunnet_svar);
@@ -46,6 +51,17 @@ public class Statistikk extends AppCompatActivity {
         antallRiktig.setText(" "+ totaltAntallRiktige);
         antallFeil.setText(" "+ totaltAntallFeil);
     }
+
+    public void settLand(String landskode){
+        Resources res = getResources();
+        DisplayMetrics dm =  res.getDisplayMetrics();
+        Configuration cf = res.getConfiguration();
+        Locale locale = new Locale(landskode);
+        cf.locale = locale;
+        res.updateConfiguration(cf, dm);
+
+    }
+
     public void slett(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(getResources().getString(R.string.stat_slettBtn))
