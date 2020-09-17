@@ -4,15 +4,15 @@
 
     <ListPreference android:title="@string/antallStykker"
         android:key="antallstykker_preference"
-        android:summary="@string/velgAntall"
+        android:summary="%s"
         android:entryValues="@array/antallStykker"
         android:entries="@array/antallStykker">
     </ListPreference>
 
-    <ListPreference
-        android:entries="@array/landskode"
-        android:entryValues="@array/landskode"
+    <ListPreference android:title="@string/sprak"
         android:key="velgSprak_preference"
-        android:summary="@string/velgSprak"
-        android:title="@string/sprak"></ListPreference>
+        android:summary="%s"
+        android:entries="@array/velgSprak"
+        android:entryValues="@array/landskode">
+    </ListPreference>
 </PreferenceScreen>

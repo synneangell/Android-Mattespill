@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,9 +18,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
-public class StartSpill extends AppCompatActivity{
+public class StartSpill extends AppCompatActivity {
     List<String> oppgArray;
     List<String> svarArray;
     List<String> fullførteRiktigeSvar = new ArrayList<>();
@@ -53,11 +57,16 @@ public class StartSpill extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        String valgtSprak = pref.getString("velgSprak_preference", "no");
+        settLand(valgtSprak);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_spill);
 
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        String antall = pref.getString("antallstykker_preference", "0");
+        SharedPreferences pref2 = PreferenceManager.getDefaultSharedPreferences(this);
+        String antall = pref2.getString("antallstykker_preference", "0");
 
         antallStykker = Integer.valueOf(antall);
 
@@ -146,6 +155,16 @@ public class StartSpill extends AppCompatActivity{
             }
         });
 
+
+    }
+
+    public void settLand(String landskode){
+        Resources res = getResources();
+        DisplayMetrics dm =  res.getDisplayMetrics();
+        Configuration cf = res.getConfiguration();
+        Locale locale = new Locale(landskode);
+        cf.locale = locale;
+        res.updateConfiguration(cf, dm);
 
     }
 
@@ -268,6 +287,7 @@ public class StartSpill extends AppCompatActivity{
         }
         textOppgaverIgjen.setText(oppgaverUtført.toString() + "/" + antallStykker);
     }
+
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -281,6 +301,23 @@ public class StartSpill extends AppCompatActivity{
         antallFeil = savedInstanceState.getInt("antallFeil");
     }
 
+/*
+    @Override
+    public void onYesClick() {
 
+    }
+
+    @Override
+    public void onNoClick() {
+
+    }
+
+    public void visDialog(View v){
+
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }*/
 }
 
