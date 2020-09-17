@@ -9,10 +9,10 @@
         android:entries="@array/antallStykker">
     </ListPreference>
 
-    <ListPreference android:title="@string/sprak"
+    <ListPreference
+        android:entries="@array/landskode"
+        android:entryValues="@array/landskode"
         android:key="velgSprak_preference"
         android:summary="@string/velgSprak"
-        android:entries="@array/velgSprak"
-        android:entryValues="@array/landskode">
-    </ListPreference>
+        android:title="@string/sprak"></ListPreference>
 </PreferenceScreen>

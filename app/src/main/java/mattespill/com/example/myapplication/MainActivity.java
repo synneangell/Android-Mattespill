@@ -24,11 +24,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        String språk = pref.getString("velgSpråk_preference", "no");
-        settLand(språk);
-
         startSpill = findViewById(R.id.startSpill);
         startSpill.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -57,21 +52,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public void settLand(String landskode){
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration cf = res.getConfiguration();
-        cf.setLocale(new Locale(landskode));
-        res.updateConfiguration(cf, dm);
-    }
 
-    public void tysk(View v){
-        settLand("de");
-        recreate();
-    }
-
-    public void norsk(View v){
-        settLand("no");
-        recreate();
-    }
 }
