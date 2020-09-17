@@ -6,7 +6,7 @@
     <string name="statistikk">Statistikk</string>
     <string name="preferanser">Preferanser</string>
 
-    <string name="byttSpråk">Velg språk</string>
+    <string name="byttSprak">Velg språk</string>
 
 
     <!-- STRINGS FOR STATISTIKK -->
@@ -40,7 +40,7 @@
     <string name="btn9">9</string>
     <string name="btn0">0</string>
     <string name="ok">Ok</string>
-    <string name="textAntallRiktig">Antall riktig:</string>
+    <string name="textAntallOppgaver">Oppgaver utført:</string>
     <string name="brukerSvar"></string>
 
     <!-- STRINGS FOR PREFERANSER -->
@@ -49,13 +49,15 @@
     <string name="tjuefem">25</string>
     <string name="norsk">Norsk</string>
     <string name="tysk">Tysk</string>
-    <string name="velgSpråk">Velg språk</string>
-    <string name="språk">Språk</string>
+    <string name="velgSprak">Velg språk</string>
+    <string name="sprak">Språk</string>
     <string name="antallStykker">Antall stykker</string>
     <string name="velgAntall">Velg antall</string>
     <string name="no">no</string>
     <string name="de">de</string>
     <string name="Velg">Velg</string>
+
+    <string name="ikkeok">Ikke ok</string>
 
 
 </resources>

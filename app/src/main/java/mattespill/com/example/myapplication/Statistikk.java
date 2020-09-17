@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,15 +24,11 @@ public class Statistikk extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistikk);
 
-        SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        String språk = pref.getString("velgSpråk_preference", "no");
-        settLand(språk);
-
         antallRiktig = findViewById(R.id.txtStat_vunnet_svar);
         antallFeil = findViewById(R.id.txtStat_tapt_svar);
 
         sp = getApplicationContext().getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
+
         currentAntallRiktig = sp.getInt("antallRiktig", 0);
         currentAntallFeil = sp.getInt("antallFeil", 0);
 
@@ -82,21 +79,4 @@ public class Statistikk extends AppCompatActivity {
         totaltAntallFeil = savedInstanceState.getInt("totaltAntallFeil");
     }
 
-    public void settLand(String landskode){
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration cf = res.getConfiguration();
-        cf.setLocale(new Locale(landskode));
-        res.updateConfiguration(cf, dm);
-    }
-
-    public void tysk(View v){
-        settLand("de");
-        recreate();
-    }
-
-    public void norsk(View v){
-        settLand("no");
-        recreate();
-    }
 }

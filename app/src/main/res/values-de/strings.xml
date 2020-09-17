@@ -6,7 +6,7 @@
     <string name="statistikk">Statistiken</string>
     <string name="preferanser">Vorlieben</string>
 
-    <string name="byttSpråk">Wähle deine Sprache</string>
+    <string name="byttSprak">Wähle deine Sprache</string>
 
     <!-- STRINGS FOR STATISTIKK -->
     <string name="stat_vunnet">Spiel gewonnen : </string>
@@ -39,7 +39,7 @@
     <string name="btn9">9</string>
     <string name="btn0">0</string>
     <string name="ok">Ok</string>
-    <string name="textAntallRiktig">Nummer richtig:</string>
+    <string name="textAntallOppgaver">Aufgaben ausgeführt:</string>
     <string name="brukerSvar"></string>
 
     <!-- STRINGS FOR PREFERANSER -->
@@ -48,11 +48,14 @@
     <string name="tjuefem">25</string>
     <string name="norsk">Norwegische</string>
     <string name="tysk">Deutsche</string>
-    <string name="velgSpråk">Wähle deine Sprache</string>
-    <string name="språk">Sprache</string>
+    <string name="velgSprak">Wähle deine Sprache</string>
+    <string name="sprak">Sprache</string>
     <string name="antallStykker">Anzahl der Stücke</string>
     <string name="velgAntall">Nummer auswählen</string>
     <string name="no">no</string>
     <string name="de">de</string>
     <string name="Velg">Wählen</string>
+
+
+    <string name="ikkeok">Ikke ok</string>
 </resources>

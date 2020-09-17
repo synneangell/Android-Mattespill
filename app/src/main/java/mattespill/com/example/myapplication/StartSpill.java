@@ -1,29 +1,30 @@
 package mattespill.com.example.myapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
-public class StartSpill extends AppCompatActivity {
+public class StartSpill extends AppCompatActivity{
     List<String> oppgArray;
     List<String> svarArray;
+    List<String> fullførteRiktigeSvar = new ArrayList<>();
+    List<String> fullførteFeilSvar = new ArrayList<>();
     TextView textBrukersvar;
     TextView textRegnestykket;
     TextView textOppgaverIgjen;
@@ -37,6 +38,22 @@ public class StartSpill extends AppCompatActivity {
     String brukersvar = "";
     SharedPreferences sp;
 
+    /*
+    @Override
+    public void onYesClick(){
+        finish();
+    }
+
+    @Override
+    public void onNoClick(){
+        return;
+    }
+
+    public void visDialog(View v){
+        DialogFragment dialog = new MyDialog();
+        dialog.show(getFragmentManager(),"Avslutt");
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +61,6 @@ public class StartSpill extends AppCompatActivity {
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         String antall = pref.getString("antallstykker_preference", "0");
-        String språk = pref.getString("velgSpråk_preference", "no");
-        settLand(språk);
 
         antallStykker = Integer.valueOf(antall);
 
@@ -55,8 +70,10 @@ public class StartSpill extends AppCompatActivity {
         textRegnestykket = (TextView)findViewById(R.id.textRegnestykket);
         textBrukersvar = (TextView)findViewById(R.id.textBrukerSvar);
         textOppgaverIgjen = (TextView)findViewById(R.id.textOppgaverIgjen);
-        random = new Random();
+        fullførteRiktigeSvar = new ArrayList<>();
+        fullførteFeilSvar = new ArrayList<>();
 
+        random = new Random();
         randomGenerator();
 
         //Lytter på knappene
@@ -131,6 +148,8 @@ public class StartSpill extends AppCompatActivity {
                 settNummer(0);
             }
         });
+
+
     }
 
     @Override
@@ -165,8 +184,24 @@ public class StartSpill extends AppCompatActivity {
             editor.putInt("antallFeil", antallFeil);
             editor.commit();
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(getResources().getString(R.string.nyttSpill))
+           /* int i = 0;
+            String riktigResultater = "Du svarte riktig på: n/";
+            while(i < fullførteRiktigeSvar.size()){
+                riktigResultater += fullførteRiktigeSvar.get(i)+"/n";
+                i++;
+            }
+            i = 0;
+            String feilResultater = "Du svarte feil på: n/";
+            while(i < fullførteFeilSvar.size()){
+                feilResultater += fullførteFeilSvar.get(i)+"/n";
+                i++;
+            }*/
+
+
+
+
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setMessage(getResources().getString(R.string.nyttSpill))
                         .setCancelable(false)
                         .setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
 
@@ -194,7 +229,7 @@ public class StartSpill extends AppCompatActivity {
             while (indeks == forrigeIndeks) {
                 indeks = random.nextInt(øvreGrense);
             }
-            textRegnestykket.setText(oppgArray.get(indeks));
+            textRegnestykket.setText(oppgArray.get(indeks)+" = ");
         }
     }
 
@@ -215,8 +250,10 @@ public class StartSpill extends AppCompatActivity {
         String svar = textBrukersvar.getText().toString();
         String riktigSvar = svarArray.get(indeks);
         Log.d("n i ok-metoden", String.valueOf(indeks));
+
         if(svar.equals(riktigSvar)){
             Toast.makeText(StartSpill.this, getResources().getString(R.string.riktig), Toast.LENGTH_SHORT).show();
+            fullførteRiktigeSvar.add(oppgArray.get(indeks));
             antallRiktig = antallRiktig +  1;
             oppgaverUtført = oppgaverUtført + 1;
             brukersvar = "";
@@ -226,12 +263,13 @@ public class StartSpill extends AppCompatActivity {
         else{
             Toast.makeText(StartSpill.this, getResources().getString(R.string.feil), Toast.LENGTH_SHORT).show();
             brukersvar = "";
+            fullførteFeilSvar.add(oppgArray.get(indeks));
             antallFeil = antallFeil + 1;
             oppgaverUtført = oppgaverUtført + 1;
             textBrukersvar.setText(brukersvar);
             randomGenerator();
         }
-        textOppgaverIgjen.setText(antallRiktig.toString() + "/" + oppgaverUtført.toString());
+        textOppgaverIgjen.setText(oppgaverUtført.toString() + "/" + antallStykker);
     }
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
@@ -246,22 +284,6 @@ public class StartSpill extends AppCompatActivity {
         antallFeil = savedInstanceState.getInt("antallFeil");
     }
 
-    public void settLand(String landskode){
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration cf = res.getConfiguration();
-        cf.setLocale(new Locale(landskode));
-        res.updateConfiguration(cf, dm);
-    }
 
-    public void tysk(View v){
-        settLand("de");
-        recreate();
-    }
-
-    public void norsk(View v){
-        settLand("no");
-        recreate();
-    }
 }
 
