@@ -7,12 +7,11 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
     private Button startSpill;
     private Button statistikk;
     private Button preferanser;
@@ -22,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(this);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         String språk = pref.getString("velgSpråk_preference", "no");
         settLand(språk);
 
@@ -61,15 +59,5 @@ public class MainActivity extends AppCompatActivity {
         Configuration cf = res.getConfiguration();
         cf.setLocale(new Locale(landskode));
         res.updateConfiguration(cf, dm);
-    }
-
-    public void tysk(View v){
-        settLand("de");
-        recreate();
-    }
-
-    public void norsk(View v){
-        settLand("no");
-        recreate();
     }
 }

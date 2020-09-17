@@ -42,8 +42,7 @@ public class StartSpill extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_spill);
 
-        SharedPreferences pref = PreferenceManager
-                .getDefaultSharedPreferences(this);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         String antall = pref.getString("antallstykker_preference", "0");
         String språk = pref.getString("velgSpråk_preference", "no");
         settLand(språk);
