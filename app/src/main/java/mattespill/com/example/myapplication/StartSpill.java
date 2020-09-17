@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-public class StartSpill extends AppCompatActivity{
+public class StartSpill extends AppCompatActivity {
     List<String> oppgArray;
     List<String> svarArray;
     List<String> fullførteRiktigeSvar = new ArrayList<>();
@@ -304,6 +304,23 @@ public class StartSpill extends AppCompatActivity{
         antallFeil = savedInstanceState.getInt("antallFeil");
     }
 
+/*
+    @Override
+    public void onYesClick() {
 
+    }
+
+    @Override
+    public void onNoClick() {
+
+    }
+
+    public void visDialog(View v){
+
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }*/
 }
 

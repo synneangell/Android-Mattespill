@@ -9,6 +9,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.view.View;
 
 import java.util.Locale;
 
@@ -33,7 +34,15 @@ public class Preferanser extends PreferenceActivity {
             addPreferencesFromResource(R.xml.preferences);
 
         }
+
+        @Override
+        public void onViewCreated(View view, Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            view.setBackgroundColor(getResources().getColor(R.color.preferanseFarge));
+        }
     }
+
+
 
 
     public void onResume() {
