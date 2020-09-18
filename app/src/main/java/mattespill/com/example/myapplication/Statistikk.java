@@ -31,11 +31,10 @@ public class Statistikk extends AppCompatActivity {
         antallRiktig = findViewById(R.id.txtStat_vunnet_svar);
         antallFeil = findViewById(R.id.txtStat_tapt_svar);
 
+        //-------Henter og viser statistikk-----
         sp = getApplicationContext().getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
-
         currentAntallRiktig = sp.getInt("antallRiktig", 0);
         currentAntallFeil = sp.getInt("antallFeil", 0);
-
         totaltAntallRiktige = sp.getInt("totaltAntallRiktige", 0);
         totaltAntallFeil = sp.getInt("totaltAntallFeil", 0);
 
@@ -61,6 +60,7 @@ public class Statistikk extends AppCompatActivity {
 
     }
 
+    //-------Slett statistikk-----
     public void slett(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(getResources().getString(R.string.stat_slettBtn))
@@ -81,6 +81,8 @@ public class Statistikk extends AppCompatActivity {
         antallRiktig.setText(totaltAntallRiktige.toString());
         antallFeil.setText(totaltAntallFeil.toString());
     }
+
+    //-------Tilstander, lagring-----
     @Override
     protected void onSaveInstanceState (Bundle saveInstanceState){
         super.onSaveInstanceState(saveInstanceState);

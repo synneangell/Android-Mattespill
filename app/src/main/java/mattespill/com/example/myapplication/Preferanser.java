@@ -42,9 +42,6 @@ public class Preferanser extends PreferenceActivity {
         }
     }
 
-
-
-
     public void onResume() {
         super.onResume();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -54,7 +51,6 @@ public class Preferanser extends PreferenceActivity {
             aktland=valgtSprak;
         }
     }
-
 
     public void settLand(String landskode){
         Resources res = getResources();

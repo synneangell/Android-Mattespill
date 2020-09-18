@@ -63,7 +63,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/ikon"
         android:layout_width="179dp"
         android:layout_height="151dp"
         android:layout_marginStart="276dp"

@@ -39,21 +39,6 @@ public class StartSpill extends AppCompatActivity {
     String brukersvar = "";
     SharedPreferences sp;
 
-    /*
-    @Override
-    public void onYesClick(){
-        finish();
-    }
-
-    @Override
-    public void onNoClick(){
-        return;
-    }
-
-    public void visDialog(View v){
-        DialogFragment dialog = new MyDialog();
-        dialog.show(getFragmentManager(),"Avslutt");
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,102 +50,99 @@ public class StartSpill extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_spill);
 
+        //-------Setter variabler-----
         SharedPreferences pref2 = PreferenceManager.getDefaultSharedPreferences(this);
         String antall = pref2.getString("antallstykker_preference", "0");
-
         antallStykker = Integer.valueOf(antall);
 
         oppgArray = Arrays.asList(getResources().getStringArray(R.array.regnestykker));
         svarArray = Arrays.asList(getResources().getStringArray(R.array.regnestykkerSvar));
-
-        textRegnestykket = (TextView)findViewById(R.id.textRegnestykket);
-        textBrukersvar = (TextView)findViewById(R.id.textBrukerSvar);
-        textOppgaverIgjen = (TextView)findViewById(R.id.textOppgaverIgjen);
+        textRegnestykket = (TextView) findViewById(R.id.textRegnestykket);
+        textBrukersvar = (TextView) findViewById(R.id.textBrukerSvar);
+        textOppgaverIgjen = (TextView) findViewById(R.id.textOppgaverIgjen);
         fullførteRiktigeSvar = new ArrayList<>();
         fullførteFeilSvar = new ArrayList<>();
 
         random = new Random();
         randomGenerator();
 
-        //Lytter på knappene
-        final Button btn1 = (Button)findViewById(R.id.btn1);
-        final Button btn2 = (Button)findViewById(R.id.btn2);
-        final Button btn3 = (Button)findViewById(R.id.btn3);
-        final Button btn4 = (Button)findViewById(R.id.btn4);
-        final Button btn5 = (Button)findViewById(R.id.btn5);
-        final Button btn6 = (Button)findViewById(R.id.btn6);
-        final Button btn7 = (Button)findViewById(R.id.btn7);
-        final Button btn8 = (Button)findViewById(R.id.btn8);
-        final Button btn9 = (Button)findViewById(R.id.btn9);
-        final Button btn0 = (Button)findViewById(R.id.btn0);
+        //-------Henter ut og lytter på knappene-----
+        final Button btn1 = (Button) findViewById(R.id.btn1);
+        final Button btn2 = (Button) findViewById(R.id.btn2);
+        final Button btn3 = (Button) findViewById(R.id.btn3);
+        final Button btn4 = (Button) findViewById(R.id.btn4);
+        final Button btn5 = (Button) findViewById(R.id.btn5);
+        final Button btn6 = (Button) findViewById(R.id.btn6);
+        final Button btn7 = (Button) findViewById(R.id.btn7);
+        final Button btn8 = (Button) findViewById(R.id.btn8);
+        final Button btn9 = (Button) findViewById(R.id.btn9);
+        final Button btn0 = (Button) findViewById(R.id.btn0);
 
 
-        btn1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 settNummer(1);
             }
         });
 
-        btn2.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 settNummer(2);
             }
         });
 
-        btn3.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 settNummer(3);
             }
         });
 
-        btn4.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 settNummer(4);
             }
         });
 
-        btn5.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 settNummer(5);
             }
         });
 
-        btn6.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 settNummer(6);
             }
         });
 
-        btn7.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn7.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 settNummer(7);
             }
         });
 
-        btn8.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn8.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 settNummer(8);
             }
         });
 
-        btn9.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn9.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 settNummer(9);
             }
         });
 
-        btn0.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn0.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 settNummer(0);
             }
         });
-
-
     }
 
-    public void settLand(String landskode){
+    public void settLand(String landskode) {
         Resources res = getResources();
-        DisplayMetrics dm =  res.getDisplayMetrics();
+        DisplayMetrics dm = res.getDisplayMetrics();
         Configuration cf = res.getConfiguration();
         Locale locale = new Locale(landskode);
         cf.locale = locale;
@@ -168,31 +150,9 @@ public class StartSpill extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed(){
-        final AlertDialog.Builder builder = new AlertDialog.Builder(StartSpill.this);
-        builder.setMessage(getResources().getString(R.string.slettFremgang));
-        builder.setCancelable(true);
-        builder.setNegativeButton(getResources().getString(R.string.nei), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
-                antallRiktig = 0;
-                antallFeil = 0;
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
-    public void randomGenerator(){
-        if(teller == antallStykker){ //Avslutter spillet dersom antall stykker er nådd
+    //-------Metoder knyttet til spillogikk-----
+    public void randomGenerator() {
+        if (teller == antallStykker) { //Avslutter spillet dersom antall stykker er nådd
 
             sp = getSharedPreferences("Statistikk", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
@@ -200,43 +160,27 @@ public class StartSpill extends AppCompatActivity {
             editor.putInt("antallFeil", antallFeil);
             editor.commit();
 
-           /* int i = 0;
-            String riktigResultater = "Du svarte riktig på: n/";
-            while(i < fullførteRiktigeSvar.size()){
-                riktigResultater += fullførteRiktigeSvar.get(i)+"/n";
-                i++;
-            }
-            i = 0;
-            String feilResultater = "Du svarte feil på: n/";
-            while(i < fullførteFeilSvar.size()){
-                feilResultater += fullførteFeilSvar.get(i)+"/n";
-                i++;
-            }*/
-
-
-
-
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-                builder1.setMessage(getResources().getString(R.string.nyttSpill))
-                        .setCancelable(false)
-                        .setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
+            builder1.setMessage(getResources().getString(R.string.nyttSpill))
+                    .setCancelable(false)
+                    .setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                StartSpill.this.finish();
-                                Intent intent = new Intent(StartSpill.this, StartSpill.this.getClass());
-                                StartSpill.this.startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(getResources().getString(R.string.nei), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                StartSpill.this.finish();
-                            }
-                        })
-                        .show();
-            }
-        else { //Spillet fortsetter, nytt regnestykke gis ut
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            StartSpill.this.finish();
+                            Intent intent = new Intent(StartSpill.this, StartSpill.this.getClass());
+                            StartSpill.this.startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton(getResources().getString(R.string.nei), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            StartSpill.this.finish();
+                        }
+                    })
+                    .show();
+        }
+            else { //Spillet fortsetter, nytt regnestykke gis ut
             teller += 1;
             int øvreGrense = 25;
             int forrigeIndeks = indeks;
@@ -245,7 +189,7 @@ public class StartSpill extends AppCompatActivity {
             while (indeks == forrigeIndeks) {
                 indeks = random.nextInt(øvreGrense);
             }
-            textRegnestykket.setText(oppgArray.get(indeks)+" = ");
+            textRegnestykket.setText(oppgArray.get(indeks) + " = ");
         }
     }
 
@@ -288,6 +232,30 @@ public class StartSpill extends AppCompatActivity {
         textOppgaverIgjen.setText(oppgaverUtført.toString() + "/" + antallStykker);
     }
 
+    //-------Metoder knyttet til tilstander-----
+    @Override
+    public void onBackPressed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(StartSpill.this);
+        builder.setMessage(getResources().getString(R.string.slettFremgang));
+        builder.setCancelable(true);
+        builder.setNegativeButton(getResources().getString(R.string.nei), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+                antallRiktig = 0;
+                antallFeil = 0;
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -300,24 +268,5 @@ public class StartSpill extends AppCompatActivity {
         antallRiktig = savedInstanceState.getInt("antallRiktig");
         antallFeil = savedInstanceState.getInt("antallFeil");
     }
-
-/*
-    @Override
-    public void onYesClick() {
-
-    }
-
-    @Override
-    public void onNoClick() {
-
-    }
-
-    public void visDialog(View v){
-
-    }
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-    }*/
 }
 

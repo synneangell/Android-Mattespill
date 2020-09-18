@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         Locale locale = new Locale(landskode);
         cf.locale = locale;
         res.updateConfiguration(cf, dm);
-
     }
 
     @Override
@@ -69,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -79,6 +77,5 @@ public class MainActivity extends AppCompatActivity {
             recreate();
             aktland=valgtSprak;
         }
-
     }
 }

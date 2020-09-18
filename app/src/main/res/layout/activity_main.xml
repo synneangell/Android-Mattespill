@@ -20,6 +20,7 @@
         android:layout_marginBottom="378dp"
         android:background="@drawable/forsideknapp"
         android:text="@string/startSpill"
+        android:scaleType="fitXY"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +64,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/ikon"
         android:layout_width="186dp"
         android:layout_height="152dp"
         android:layout_marginStart="112dp"
