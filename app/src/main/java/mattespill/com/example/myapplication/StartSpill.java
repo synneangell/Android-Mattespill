@@ -184,7 +184,7 @@ public class StartSpill extends AppCompatActivity {
             teller += 1;
             int øvreGrense = 25;
             int forrigeIndeks = indeks;
-            indeks = random.nextInt(øvreGrense); //får ut random tall fra 0 til 24 som er indeks i arrayet med regnestykker
+            indeks = random.nextInt(øvreGrense);
 
             while (indeks == forrigeIndeks) {
                 indeks = random.nextInt(øvreGrense);

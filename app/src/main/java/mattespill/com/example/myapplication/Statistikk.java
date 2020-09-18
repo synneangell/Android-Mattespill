@@ -10,7 +10,6 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.TextView;
-
 import java.util.Locale;
 
 public class Statistikk extends AppCompatActivity {
