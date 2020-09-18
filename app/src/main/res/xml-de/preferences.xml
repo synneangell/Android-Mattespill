@@ -6,13 +6,15 @@
         android:key="antallstykker_preference"
         android:summary="%s"
         android:entryValues="@array/antallStykker"
-        android:entries="@array/antallStykker">
+        android:entries="@array/antallStykker"
+        android:defaultValue="@string/fem">
     </ListPreference>
 
     <ListPreference android:title="@string/sprak"
         android:key="velgSprak_preference"
         android:summary="%s"
         android:entries="@array/velgSprak"
-        android:entryValues="@array/landskode">
+        android:entryValues="@array/landskode"
+        android:defaultValue="@string/de">
     </ListPreference>
 </PreferenceScreen>
