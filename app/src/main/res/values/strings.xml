@@ -42,6 +42,7 @@
     <string name="ok">Ok</string>
     <string name="textAntallOppgaver">Oppgaver utført:</string>
     <string name="brukerSvar"></string>
+    <string name="forMangeSiffer">Ikke tillatt med flere tall</string>
 
     <!-- STRINGS FOR PREFERANSER -->
     <string name="fem">5</string>

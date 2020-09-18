@@ -81,61 +81,103 @@ public class StartSpill extends AppCompatActivity {
 
         btn1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                settNummer(1);
+                if (textBrukersvar.length() < 4) {
+                    settNummer(1);
+                } else {
+                    alert();
+                }
             }
         });
 
+
+
         btn2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                settNummer(2);
+                if (textBrukersvar.length() < 4) {
+                    settNummer(2);
+                } else {
+                    alert();
+                }
             }
         });
 
         btn3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                settNummer(3);
+                if (textBrukersvar.length() < 4) {
+                    settNummer(3);
+                } else {
+                    alert();
+                }
             }
         });
 
         btn4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                settNummer(4);
+                if (textBrukersvar.length() < 4) {
+                    settNummer(4);
+                } else {
+                    alert();
+                }
             }
         });
 
         btn5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                settNummer(5);
+                if (textBrukersvar.length() < 4) {
+                    settNummer(5);
+                } else {
+                    alert();
+                }
             }
         });
 
         btn6.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                settNummer(6);
+                if (textBrukersvar.length() < 4) {
+                    settNummer(6);
+                } else {
+                    alert();
+                }
             }
         });
 
         btn7.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                settNummer(7);
+                if (textBrukersvar.length() < 4) {
+                    settNummer(7);
+                } else {
+                    alert();
+                }
             }
         });
 
         btn8.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                settNummer(8);
+                if (textBrukersvar.length() < 4) {
+                    settNummer(8);
+                } else {
+                    alert();
+                }
             }
         });
 
         btn9.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                settNummer(9);
+                if (textBrukersvar.length() < 4) {
+                    settNummer(9);
+                } else {
+                    alert();
+                }
             }
         });
 
         btn0.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                settNummer(0);
+                if (textBrukersvar.length() < 4) {
+                    settNummer(0);
+                } else {
+                    alert();
+                }
             }
         });
     }
@@ -198,6 +240,10 @@ public class StartSpill extends AppCompatActivity {
         textBrukersvar.setText(brukersvar);
     }
 
+    public void alert(){
+        Toast.makeText(StartSpill.this, getResources().getString(R.string.forMangeSiffer), Toast.LENGTH_SHORT).show();
+    }
+
     //Metode som setter brukerens svar i applikasjonen
     public void settNummer(int nummer){
         String input = String.valueOf(nummer);
@@ -231,6 +277,8 @@ public class StartSpill extends AppCompatActivity {
         }
         textOppgaverIgjen.setText(oppgaverUtført.toString() + "/" + antallStykker);
     }
+
+
 
     //-------Metoder knyttet til tilstander-----
     @Override
@@ -269,4 +317,5 @@ public class StartSpill extends AppCompatActivity {
         antallFeil = savedInstanceState.getInt("antallFeil");
     }
 }
+
 
